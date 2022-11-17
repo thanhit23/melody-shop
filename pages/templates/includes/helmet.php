@@ -15,7 +15,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/5b900cdeed.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://themes.pixelstrap.com/fastkart/assets/css/animate.min.css"/>
-<link rel="stylesheet" type="text/css" href="../../../resources/css/style.css" />
 <link rel="stylesheet" type="text/css" href="https://themes.pixelstrap.com/fastkart/assets/css/vendors/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="https://themes.pixelstrap.com/fastkart/assets/css/vendors/feather-icon.css">
 <link rel="stylesheet" type="text/css" href="https://themes.pixelstrap.com/fastkart/assets/css/vendors/slick/slick.css">

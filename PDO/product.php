@@ -34,7 +34,7 @@ function commodityPagination($limit) {
  */
 
 function commoditySelectAll($special = 1) {
-  $sql = "SELECT * FROM `products` WHERE $special";
+  $sql = "SELECT * FROM `commodity` WHERE $special";
   return query($sql);
 }
 
