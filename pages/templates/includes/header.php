@@ -16,7 +16,7 @@ if (isset($_POST['logout'])) {
               <span class="navbar-toggler-icon"><i class="fa-solid fa-bars"></i></span>
             </button>
             <a href="/home" class="web-logo nav-logo">
-              <img src="../../../resources/images/Sunny-Shop.png" class="img-fluid blur-up lazyload" alt="">
+              <img src="../../../resources/images/logo-header.png" class="img-fluid blur-up lazyload" alt="">
             </a>
             <div class="middle-box">
               <div class="search-box">
@@ -155,12 +155,12 @@ if (isset($_POST['logout'])) {
                 <div class="offcanvas-body">
                   <ul class="navbar-nav">
                     <li class="nav-item dropdown dropdown-mega">
-                      <a class="nav-link ps-xl-2 ps-0" href="/home">
+                      <a class="nav-link ps-xl-2 ps-0 no-content" href="/home">
                         Home
                       </a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#products"
+                      <a class="nav-link dropdown-toggle no-content" href="#products"
                          data-bs-toggle="dropdown">Product</a>
                     </li>
                     <li class="nav-item">

@@ -9,7 +9,6 @@ session_start();
   <?php
   require ($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/helmet.php');
   ?>
-  <link rel="stylesheet" href="/resources/css/header.css">
 </head>
 <body>
 <?php
@@ -33,9 +32,6 @@ require ($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
               <ul>
                 <li>
                   <a href="javascript:void(0)"><?php echo $_GET['search'] ?></a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)">Điện Thoạt</a>
                 </li>
               </ul>
             </div>
@@ -231,7 +227,7 @@ require ($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
         <div class="row g-sm-4 g-3 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 product-list-section">
           <?php
           $filter = $_GET['search'];
-          $result = commoditySelectAll("name LIKE '%$filter%'");
+          $result = commoditySelectAll("commodity_name LIKE '%$filter%'");
           if ($result) {
             foreach ($result as $value) {
               $price = number_format($value['unit_price'], 0, '', ',');
@@ -239,53 +235,16 @@ require ($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
               $priceNew = (int)$value['unit_price'];
               $discountNew = (int)$discount === 0 ? 1 : $discount;
               $priceOff = number_format($priceNew / ((100 - $discountNew) / 100), 0);
-              $db = $value['image'];
+              $db = $value['images'];
               $img = json_decode($db);
               ?>
               <div>
                 <div class="product-box-3 h-100 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                   <div class="product-header">
                     <div class="product-image">
-                      <a href="/product.html?name=<?php echo $value['name'] ?>&id=<?php echo $value['id'] ?>">
+                      <a href="/product.html?name=<?php echo $value['commodity_name'] ?>&id=<?php echo $value['id_commodity'] ?>">
                         <img src="<?php echo $img[0] ?>" class="img-fluid blur-up lazyloaded" alt="">
                       </a>
-                      <ul class="product-option">
-                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="View">
-                          <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#view">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none"
-                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                 class="feather feather-eye">
-                              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                              <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                          </a>
-                        </li>
-
-                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Compare">
-                          <a href="compare.html">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none"
-                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                 class="feather feather-refresh-cw">
-                              <polyline points="23 4 23 10 17 10"></polyline>
-                              <polyline points="1 20 1 14 7 14"></polyline>
-                              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
-                            </svg>
-                          </a>
-                        </li>
-
-                        <li data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Wishlist">
-                          <a href="wishlist.html" class="notifi-wishlist">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 fill="none"
-                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                 class="feather feather-heart">
-                              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                            </svg>
-                          </a>
-                        </li>
-                      </ul>
                     </div>
                   </div>
                   <div class="product-footer">
