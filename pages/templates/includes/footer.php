@@ -48,7 +48,7 @@
           <div class="footer-logo">
             <div class="theme-logo">
               <a href="/home">
-                <img src="../../../resources/images/Sunny-Shop.png" class="blur-up lazyload" alt="">
+                <img src="../../../resources/images/logo-header.png" class="blur-up lazyload" alt="">
               </a>
             </div>
             <div class="footer-logo-contain">
@@ -59,7 +59,7 @@
                 </li>
                 <li>
                   <i data-feather="mail"></i>
-                  <a href="javascript:void(0)">support@sunny.com</a>
+                  <a href="javascript:void(0)">support@melody.com</a>
                 </li>
               </ul>
             </div>
@@ -72,13 +72,13 @@
           <div class="footer-contain">
             <ul>
               <li>
-                <a href="/categories?search=Iphone" class="text-content">Iphone</a>
+                <a href="/categories?search=Iphone" class="text-content">Áo</a>
               </li>
               <li>
-                <a href="/categories?search=Xiaomi" class="text-content">Xiaomi Redmi</a>
+                <a href="/categories?search=Xiaomi" class="text-content">Quần</a>
               </li>
               <li>
-                <a href="/categories?search=Samsung" class="text-content">Samsung</a>
+                <a href="/categories?search=Samsung" class="text-content">Áo Khoác</a>
               </li>
             </ul>
           </div>
@@ -118,7 +118,7 @@
                   <i data-feather="mail"></i>
                   <div class="contact-number">
                     <h6 class="text-content">Email Address :</h6>
-                    <h5>sunny@hotmail.com</h5>
+                    <h5>melody@gmail.com</h5>
                   </div>
                 </div>
               </li>
@@ -163,3 +163,5 @@
 <script src="https://themes.pixelstrap.com/fastkart/assets/js/custom-wow.js"></script>
 <script src="https://themes.pixelstrap.com/fastkart/assets/js/script.js"></script>
 <script src="https://themes.pixelstrap.com/fastkart/assets/js/theme-setting.js"></script>
+<script src="https://themes.pixelstrap.com/fastkart/assets/js/timer1.js"></script>
+<script src="https://themes.pixelstrap.com/fastkart/assets/js/timer2.js"></script>

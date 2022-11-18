@@ -7,6 +7,7 @@
 <link id="rtl-link" rel="stylesheet" type="text/css"
       href="https://themes.pixelstrap.com/fastkart/assets/css/vendors/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="https://themes.pixelstrap.com/fastkart/assets/css/vendors/animate.css">
+<link rel="stylesheet" type="text/css" href="../../../resources/css/style.css">
 <link rel="icon" href="https://themes.pixelstrap.com/fastkart/assets/images/favicon/1.png" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.gstatic.com/">
 <link href="https://fonts.googleapis.com/css2?family=Russo+One&amp;display=swap" rel="stylesheet">
