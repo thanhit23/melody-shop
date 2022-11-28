@@ -98,7 +98,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vert
                     $name = $value['name'];
                     $createAt = $value['create_at'];
                     $unit_price = number_format($value['unit_price'], 0);
-                    $db = $value['image'];
+                    $db = $value['images'];
                     $img = json_decode($db);
                     ?>
                   <tr>

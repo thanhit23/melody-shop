@@ -5,7 +5,7 @@ session_start();
 <!doctype html>
 <html lang="en">
 <head>
-  <title>Sunny Shop</title>
+  <title>Melody Shop</title>
   <?php
   require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/helmet.php')
   ?>
@@ -14,10 +14,17 @@ session_start();
   <style>
     .product-box-4 .product-detail a .name {
       -webkit-line-clamp: 2 !important;
+      width: 100%;
     }
     .product-box-4 .product-detail .price del {
       font-size: 13px;
     }
+    .product-box-4 .product-image-2 img {
+      margin: 0 !important;
+      width: 100% !important;
+      height: 200px !important;
+    }
+
   </style>
 </head>
 <body>
@@ -92,9 +99,9 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
             <a href="categories?search=đồ ngủ" class="category-box category-dark wow fadeInUp"
                data-wow-delay="0.3s">
               <div>
-                <img src="https://themes.pixelstrap.com/fastkart/assets/svg/fashion/sleepwear.svg"
+                <img src="../../resources/images/icon/—Pngtree—vector male icon_3989738.png"
                      class="blur-up lazyload" alt="">
-                <h5>sleepwear</h5>
+                <h5>Male</h5>
               </div>
             </a>
           </div>
@@ -102,9 +109,9 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
             <a href="categories?search=đồ bơi" class="category-box category-dark wow fadeInUp"
                data-wow-delay="0.35s">
               <div>
-                <img src="https://themes.pixelstrap.com/fastkart/assets/svg/fashion/swimwear.svg"
+                <img src="../../resources/images/icon/female.png"
                      class="blur-up lazyload" alt="">
-                <h5>swimwear</h5>
+                <h5>Female</h5>
               </div>
             </a>
           </div>
@@ -130,7 +137,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
               <div>
                 <?php
                 foreach ($array[$i] as $value) {
-                  $name = $value['commodity_name'];
+                  $name = $value['name'];
                   $unit_price = $value['unit_price'];
                   $price = number_format($unit_price, 0, '', ',');
                   $discount = $value['discount'];
@@ -142,7 +149,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                   ?>
                   <div class="product-box-4 wow fadeInUp">
                     <div class="product-image product-image-2">
-                      <a href="product-left-thumbnail.html">
+                      <a href="/product.html?name=<?= $value['name'] ?>&id=<?= $value['id_product'] ?>">
                         <img src="<?= $img[0] ?>"
                              class="img-fluid blur-up lazyload" alt="">
                       </a>
@@ -165,142 +172,17 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                           <i data-feather="star"></i>
                         </li>
                       </ul>
-                      <a href="product-left-thumbnail.html">
+                      <a href="/product.html?name=<?= $value['name'] ?>&id=<?= $value['id_product'] ?>">
                         <h5 class="name text-title"><?= $name ?></h5>
                       </a>
                       <h5 class="price theme-color"><?= $price. 'đ' ?>
                         <del><?= $priceOff ?></del>
                       </h5>
-                      <div class="addtocart_btn">
-                        <button class="add-button addcart-button btn buy-button text-light">
-                          <i class="fa-solid fa-plus"></i>
-                        </button>
-                        <div class="qty-box cart_qty">
-                          <div class="input-group">
-                            <button type="button" class="btn qty-left-minus" data-type="minus"
-                                    data-field="">
-                              <i class="fa fa-minus" aria-hidden="true"></i>
-                            </button>
-                            <input class="form-control input-number qty-input" type="text"
-                                   name="quantity" value="1">
-                            <button type="button" class="btn qty-right-plus" data-type="plus"
-                                    data-field="">
-                              <i class="fa fa-plus" aria-hidden="true"></i>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                   <?php
                 }
                 ?>
-              </div>
-              <div>
-                <div class="product-box-4 wow fadeInUp">
-                  <div class="product-image product-image-2">
-                    <a href="product-left-thumbnail.html">
-                      <img src="https://cf.shopee.vn/file/sg-11134201-22110-lk8wypy5nkjv91_tn"
-                           class="img-fluid blur-up lazyload" alt="">
-                    </a>
-                  </div>
-                  <div class="product-detail">
-                    <ul class="rating">
-                      <li>
-                        <i data-feather="star" class="fill"></i>
-                      </li>
-                      <li>
-                        <i data-feather="star" class="fill"></i>
-                      </li>
-                      <li>
-                        <i data-feather="star" class="fill"></i>
-                      </li>
-                      <li>
-                        <i data-feather="star" class="fill"></i>
-                      </li>
-                      <li>
-                        <i data-feather="star"></i>
-                      </li>
-                    </ul>
-                    <a href="product-left-thumbnail.html">
-                      <h5 class="name text-title"><?= $name ?></h5>
-                    </a>
-                    <h5 class="price theme-color"><?= $price ?>
-                      <del><?= $priceOff ?></del>
-                    </h5>
-                    <div class="addtocart_btn">
-                      <button class="add-button addcart-button btn buy-button text-light">
-                        <i class="fa-solid fa-plus"></i>
-                      </button>
-                      <div class="qty-box cart_qty">
-                        <div class="input-group">
-                          <button type="button" class="btn qty-left-minus" data-type="minus"
-                                  data-field="">
-                            <i class="fa fa-minus" aria-hidden="true"></i>
-                          </button>
-                          <input class="form-control input-number qty-input" type="text"
-                                 name="quantity" value="1">
-                          <button type="button" class="btn qty-right-plus" data-type="plus"
-                                  data-field="">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="product-box-4 wow fadeInUp">
-                  <div class="product-image product-image-2">
-                    <a href="product-left-thumbnail.html">
-                      <img src="https://cf.shopee.vn/file/sg-11134201-22110-lk8wypy5nkjv91_tn"
-                           class="img-fluid blur-up lazyload" alt="">
-                    </a>
-                  </div>
-                  <div class="product-detail">
-                    <ul class="rating">
-                      <li>
-                        <i data-feather="star" class="fill"></i>
-                      </li>
-                      <li>
-                        <i data-feather="star" class="fill"></i>
-                      </li>
-                      <li>
-                        <i data-feather="star" class="fill"></i>
-                      </li>
-                      <li>
-                        <i data-feather="star" class="fill"></i>
-                      </li>
-                      <li>
-                        <i data-feather="star"></i>
-                      </li>
-                    </ul>
-                    <a href="product-left-thumbnail.html">
-                      <h5 class="name text-title"><?= $name ?></h5>
-                    </a>
-                    <h5 class="price theme-color"><?= $priceNew ?>
-                      <del><?= $priceOff ?></del>
-                    </h5>
-                    <div class="addtocart_btn">
-                      <button class="add-button addcart-button btn buy-button text-light">
-                        <i class="fa-solid fa-plus"></i>
-                      </button>
-                      <div class="qty-box cart_qty">
-                        <div class="input-group">
-                          <button type="button" class="btn qty-left-minus" data-type="minus"
-                                  data-field="">
-                            <i class="fa fa-minus" aria-hidden="true"></i>
-                          </button>
-                          <input class="form-control input-number qty-input" type="text"
-                                 name="quantity" value="1">
-                          <button type="button" class="btn qty-right-plus" data-type="plus"
-                                  data-field="">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
               <?php
             }
@@ -316,7 +198,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
       <img src="https://themes.pixelstrap.com/fastkart/assets/images/fashion/banner/4.jpg" class="bg-img blur-up lazyload" alt="">
       <div class="banner-details p-center p-4 text-white text-center">
         <div>
-          <h3 class="lh-base fw-bold offer-text">Get $3 Cashback! Min Order of $30</h3>
+          <h3 class="lh-base fw-bold offer-text">Get 10% Cashback! Min Order of 199k</h3>
           <h6 class="coupon-code coupon-code-white">Use Code : GROCERY1920</h6>
         </div>
       </div>
@@ -349,7 +231,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
             <div class="top-selling-slider product-arrow">
               <div>
                 <div class="product-image">
-                  <a href="product-left-thumbnail.html">
+                  <a href="#">
                     <img src="../../resources/images/e6f8f3864f1169cce1f737d5741dab1a.png"
                          class="img-fluid product-image blur-up lazyload" alt="">
                   </a>
@@ -372,7 +254,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                       <i data-feather="star"></i>
                     </li>
                   </ul>
-                  <a href="product-left-thumbnail.html">
+                  <a href="#">
                     <h3 class="name w-100 mx-auto text-center">Áo Hoodie</h3>
                   </a>
                   <h3 class="price theme-color d-flex justify-content-center">
@@ -424,7 +306,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
               </div>
               <div>
                 <div class="product-image">
-                  <a href="product-left-thumbnail.html">
+                  <a href="#">
                     <img src="../../resources/images/sg-11134201-22100-yx66idk23livde.png"
                          class="img-fluid product-image blur-up lazyload" alt="">
                   </a>
@@ -447,7 +329,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                       <i data-feather="star"></i>
                     </li>
                   </ul>
-                  <a href="product-left-thumbnail.html">
+                  <a href="#">
                     <h3 class="name w-100 mx-auto text-center text-title">Áo thun nam mới nhất</h3>
                   </a>
                   <h3 class="price theme-color d-flex justify-content-center">
@@ -504,7 +386,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
       <div class="col-xxl-8 col-lg-7 order-lg-1">
         <div class="slider-5_2 arrow-slider img-slider">
           <?php
-          $result = commoditySelectAll();
+          $result = commoditySelectAll('view > 1200');
           if ($result) {
             $array = array_chunk($result, 2, true);
 
@@ -513,7 +395,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
               <div>
                 <?php
                 foreach ($array[$i] as $value) {
-                  $name = $value['commodity_name'];
+                  $name = $value['name'];
                   $unit_price = $value['unit_price'];
                   $price = number_format($unit_price, 0, '', ',');
                   $discount = $value['discount'];
@@ -525,7 +407,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                   ?>
                   <div class="product-box-4 wow fadeInUp">
                     <div class="product-image product-image-2">
-                      <a href="product-left-thumbnail.html">
+                      <a href="/product.html?name=<?= $value['name'] ?>&id=<?= $value['id_product'] ?>">
                         <img src="<?= $img[0] ?>"
                              class="img-fluid blur-up lazyload" alt="">
                       </a>
@@ -548,31 +430,12 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                           <i data-feather="star"></i>
                         </li>
                       </ul>
-                      <a href="product-left-thumbnail.html">
+                      <a href="/product.html?name=<?= $value['name'] ?>&id=<?= $value['id_product'] ?>">
                         <h5 class="name text-title"><?= $name ?></h5>
                       </a>
-                      <h5 class="price theme-color"><?= $priceNew ?>
+                      <h5 class="price theme-color"><?= $price. 'đ' ?>
                         <del><?= $priceOff ?></del>
                       </h5>
-                      <div class="addtocart_btn">
-                        <button class="add-button addcart-button btn buy-button text-light">
-                          <i class="fa-solid fa-plus"></i>
-                        </button>
-                        <div class="qty-box cart_qty">
-                          <div class="input-group">
-                            <button type="button" class="btn qty-left-minus" data-type="minus"
-                                    data-field="">
-                              <i class="fa fa-minus" aria-hidden="true"></i>
-                            </button>
-                            <input class="form-control input-number qty-input" type="text"
-                                   name="quantity" value="1">
-                            <button type="button" class="btn qty-right-plus" data-type="plus"
-                                    data-field="">
-                              <i class="fa fa-plus" aria-hidden="true"></i>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                   <?php
@@ -581,7 +444,6 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
               </div>
               <?php
             }
-            ?><?php
           } ?>
         </div>
       </div>

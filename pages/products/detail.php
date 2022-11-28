@@ -41,7 +41,8 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php')
   </div>
 </section>
 <?php
-$result = commoditySelectAll("`id_commodity` = $id");
+$special = "id_commodity = $id";
+$result = commoditySelectAll($special);
 if ($result) {
   foreach ($result as $value) {
     $unit_price = $value['unit_price'];
@@ -80,9 +81,7 @@ if ($result) {
                         <?php foreach ($img as $valueImg) : ?>
                           <div>
                             <div class="slider-image">
-                              <img src="<?= $valueImg ?>"
-                                   class="img-fluid image_zoom_cls-0 blur-up lazyload"
-                                   alt="">
+                              <img src="<?= $valueImg ?>" class="img-fluid image_zoom_cls-0 blur-up lazyload" alt="">
                             </div>
                           </div>
                         <?php endforeach; ?>
@@ -188,7 +187,7 @@ if ($result) {
                     <img src="../../resources/images/Sunny-Shop.png" class="blur-up lazyload" alt="">
                   </div>
                   <div class="vendor-name">
-                    <h5 class="fw-500">Sunny Co.</h5>
+                    <h5 class="fw-500">Melody Co.</h5>
                     <div class="product-rating mt-1">
                       <ul class="rating">
                         <li>

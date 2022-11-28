@@ -8,7 +8,7 @@ function insertComment($content, $id_product, $id_user) {
 }
 
 function commentStatistical() {
-  $sql = "select max(comment.create_at) as newest, min(comment.create_at) as oldest, count(comment.id) as amount, products.name, products.id from products join comment on products.id = comment.id_product GROUP by comment.id_product";
+  $sql = "select max(comment.create_at) as newest, min(comment.create_at) as oldest, count(comment.id_comment) as amount, products.name, products.id_product from products join comment on products.id_product = comment.id_product GROUP by comment.id_product";
   return query($sql);
 }
 
