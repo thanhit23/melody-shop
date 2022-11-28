@@ -2,15 +2,15 @@
 session_start();
 require($_SERVER['DOCUMENT_ROOT'] . '/PDO/user.php');
 if (isset($_POST['btn-login'])) {
-  $result = clientSelectAll('password, email, full_name, role');
+  $result = clientSelectAll('password, email, username, role');
   foreach($result as $value) {
     $email = $value['email'];
     $password = $value['password'];
     if ($_POST['email'] === $email && $_POST['password'] === $password) {
       $_SESSION['email'] = $value['email'];
-      $_SESSION['fullName'] = $value['full_name'];
+      $_SESSION['fullName'] = $value['usename'];
       $_SESSION['role'] = $value['role'];
-      $_SESSION['idUser'] = $value['id'];
+      $_SESSION['idUser'] = $value['id_user'];
       echo ("<script>location.href='/home'</script>");
     }
   }

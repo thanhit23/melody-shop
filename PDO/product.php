@@ -13,7 +13,7 @@ function commodityUpdate($name, $price, $discount, $description, $view, $type, $
 }
 
 function commodityDelete($id) {
-  $sql = "DELETE FROM `products` WHERE `id`=?";
+  $sql = "DELETE FROM `products` WHERE `id_product`=?";
   if(is_array($id)){
     foreach ($id as $idItem) {
       execute($sql, $idItem);
@@ -24,7 +24,7 @@ function commodityDelete($id) {
 }
 
 function commodityPagination($limit) {
-  $sql = "SELECT * FROM `products` ORDER BY id DESC LIMIT $limit";
+  $sql = "SELECT * FROM `products` ORDER BY id_product DESC LIMIT $limit";
   return query($sql);
 }
 
@@ -34,16 +34,16 @@ function commodityPagination($limit) {
  */
 
 function commoditySelectAll($special = 1) {
-  $sql = "SELECT * FROM `commodity` WHERE $special";
+  $sql = "SELECT * FROM `products` WHERE $special";
   return query($sql);
 }
 
 function commoditySelectById($id) {
-  $sql = "SELECT * FROM `products` WHERE `id`=?";
+  $sql = "SELECT * FROM `products` WHERE `id_product`=?";
   return queryOne($sql, $id);
 }
 
 function commodityExist($id) {
-  $sql = "SELECT count(*) FROM `products` WHERE `id`=?";
+  $sql = "SELECT count(*) FROM `products` WHERE `id_product`=?";
   return queryValue($sql, $id) > 0;
 }

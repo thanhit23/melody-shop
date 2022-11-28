@@ -5,7 +5,7 @@ session_start();
 <!doctype html>
 <html lang="en">
 <head>
-  <title><?php echo $_GET['filter'] ?></title>
+  <title><?= $_GET['filter'] ?></title>
   <?php
   require ($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/helmet.php');
   ?>
@@ -31,7 +31,7 @@ require ($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
               </div>
               <ul>
                 <li>
-                  <a href="javascript:void(0)"><?php echo $_GET['search'] ?></a>
+                  <a href="javascript:void(0)"><?= $_GET['search'] ?></a>
                 </li>
               </ul>
             </div>
@@ -242,18 +242,18 @@ require ($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                 <div class="product-box-3 h-100 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                   <div class="product-header">
                     <div class="product-image">
-                      <a href="/product.html?name=<?php echo $value['commodity_name'] ?>&id=<?php echo $value['id_commodity'] ?>">
-                        <img src="<?php echo $img[0] ?>" class="img-fluid blur-up lazyloaded" alt="">
+                      <a href="/product.html?name=<?= $value['commodity_name'] ?>&id=<?= $value['id_product'] ?>">
+                        <img src="<?= $img[0] ?>" class="img-fluid blur-up lazyloaded" alt="">
                       </a>
                     </div>
                   </div>
                   <div class="product-footer">
                     <div class="product-detail">
-                      <span class="span-name"><?php echo $_GET['filter'] ?></span>
-                      <a href="/product.html?name=<?php echo $value['name'] ?>&id=<?php echo $value['id'] ?>">
-                        <h5 class="name"><?php echo $value['name'] ?></h5>
+                      <span class="span-name"><?= $_GET['search'] ?></span>
+                      <a href="/product.html?name=<?= $value['name'] ?>&id=<?= $value['id_product'] ?>">
+                        <h5 class="name"><?= $value['name'] ?></h5>
                       </a>
-                      <p class="text-content mt-1 mb-2 product-content"><?php echo $value['description'] ?></p>
+                      <p class="text-content mt-1 mb-2 product-content"><?= $value['description'] ?></p>
                       <div class="product-rating mt-2">
                         <ul class="rating">
                           <li>
@@ -303,8 +303,8 @@ require ($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                         </ul>
                         <span>(4.0)</span>
                       </div>
-                      <h5 class="price"><span class="theme-color"><?php echo $price. ' đ' ?></span>
-                        <del><?php echo $priceOff ?></del>
+                      <h5 class="price"><span class="theme-color"><?= $price. ' đ' ?></span>
+                        <del><?= $priceOff ?></del>
                       </h5>
                       <div class="add-to-cart-box bg-white">
                         <button class="btn btn-add-cart addcart-button">Add

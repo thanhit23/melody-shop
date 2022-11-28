@@ -8,7 +8,7 @@
       href="https://themes.pixelstrap.com/fastkart/assets/css/vendors/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="https://themes.pixelstrap.com/fastkart/assets/css/vendors/animate.css">
 <link rel="stylesheet" type="text/css" href="../../../resources/css/style.css">
-<link rel="icon" href="https://themes.pixelstrap.com/fastkart/assets/images/favicon/1.png" type="image/x-icon">
+<link rel="icon" href="../../../resources/images/logo-1.png" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.gstatic.com/">
 <link href="https://fonts.googleapis.com/css2?family=Russo+One&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;display=swap" rel="stylesheet">
@@ -22,3 +22,8 @@
 <link rel="stylesheet" type="text/css" href="https://themes.pixelstrap.com/fastkart/assets/css/vendors/slick/slick-theme.css">
 <link rel="stylesheet" type="text/css" href="https://themes.pixelstrap.com/fastkart/assets/css/bulk-style.css">
 <link id="color-link" rel="stylesheet" type="text/css" href="https://themes.pixelstrap.com/fastkart/assets/css/style.css">
+<style>
+  body{
+    font-family: sans-serif !important;
+  }
+</style>
