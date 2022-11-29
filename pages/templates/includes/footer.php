@@ -165,3 +165,4 @@
 <script src="https://themes.pixelstrap.com/fastkart/assets/js/theme-setting.js"></script>
 <script src="https://themes.pixelstrap.com/fastkart/assets/js/timer1.js"></script>
 <script src="https://themes.pixelstrap.com/fastkart/assets/js/timer2.js"></script>
+<script src="../../../resources/js/const.js"></script>

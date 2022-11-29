@@ -1,20 +1,5 @@
 <?php
 session_start();
-require($_SERVER['DOCUMENT_ROOT'] . '/PDO/user.php');
-if (isset($_POST['btn-login'])) {
-  $result = clientSelectAll('password, email, username, role');
-  foreach($result as $value) {
-    $email = $value['email'];
-    $password = $value['password'];
-    if ($_POST['email'] === $email && $_POST['password'] === $password) {
-      $_SESSION['email'] = $value['email'];
-      $_SESSION['fullName'] = $value['usename'];
-      $_SESSION['role'] = $value['role'];
-      $_SESSION['idUser'] = $value['id_user'];
-      echo ("<script>location.href='/home'</script>");
-    }
-  }
-}
 ?>
 <!doctype html>
 <html lang="en">
@@ -24,6 +9,7 @@ if (isset($_POST['btn-login'])) {
   require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/helmet.php')
   ?>
   <link rel="stylesheet" href="/resources/css/header.css">
+  <link rel="stylesheet" href="/resources/css/login.css">
 </head>
 <body>
 <?php
@@ -66,17 +52,23 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
             </div>
             <div class="input-box">
               <form method="post" class="row g-4">
-                <div class="col-12">
-                  <div class="form-floating theme-form-floating log-in-form" style="margin-bottom:25px;">
+                <div class="form-outline error-container active-error">
+                  <i class="fa-solid fa-circle-xmark"></i>
+                  <span class="error-message-form"></span>
+                </div>
+                <div class="col-12" style="margin-bottom:20px;">
+                  <div class="form-floating theme-form-floating log-in-form">
                     <input type="email" class="form-control" id="email" placeholder="Email Address" name="email">
-                    <label for="email">Email Address</label>
+                    <label for="email" class="form-label">Email Address</label>
                   </div>
+                  <span class="form-message"></span>
                 </div>
                 <div class="col-12">
                   <div class="form-floating theme-form-floating log-in-form">
                     <input type="password" class="form-control" id="password" placeholder="Password" name="password">
-                    <label for="password">Password</label>
+                    <label for="password" class="form-label">Password</label>
                   </div>
+                  <span class="form-message"></span>
                 </div>
                 <div class="col-12">
                   <div class="forgot-box" style="margin: 10px 0;">
@@ -88,7 +80,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                   </div>
                 </div>
                 <div class="col-12">
-                  <button name="btn-login" class="btn btn-animation w-100 justify-content-center" type="submit">
+                  <button id="btn-signin" name="btn-login" class="btn btn-animation w-100 justify-content-center" type="button">
                     Log In
                   </button>
                 </div>
@@ -130,5 +122,6 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/footer.php')
 ?>
+<script src="/resources/js/login.js"></script>
 </body>
 </html>

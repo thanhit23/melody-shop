@@ -12,10 +12,23 @@ function clientInsert($password, $name, $email) {
   execute($sql, $password, $name, $img, $email);
 }
 
+
+/**
+ * @param string $name
+ * @param int $id
+ * @return array
+ */
+
 function clientUpdate($name, $id) {
   $sql = "UPDATE `user` SET `usename`=? WHERE `id_user`=?";
   execute($sql, $name, $id);
 }
+
+
+/**
+ * @param int $id
+ * @return array
+ */
 
 function clientDelete($id) {
   $sql = "DELETE FROM `user` WHERE `id`=?";
@@ -28,22 +41,34 @@ function clientDelete($id) {
   }
 }
 
+
 /**
  * @param int $where
  * @param $cols
  * @return array
  */
 
-function clientSelectAll($cols = '*', $where = 1) {
+ function clientSelectAll($cols = '*', $where = 1) {
   $sql = "SELECT $cols FROM `user` WHERE $where";
   return query($sql);
 }
+
+
+/**
+ * @param int $id
+ * @return array
+ */
 
 function clientSelectById($id) {
   $sql = "SELECT * FROM `user` WHERE `id`=?";
   return queryOne($sql, $id);
 }
 
+
+/**
+ * @param int $id
+ * @return array
+ */
 function clientExist($id) {
   $sql = "SELECT count(*) FROM `user` WHERE `id`=?";
   return queryValue($sql, $id) > 0;

@@ -14,7 +14,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
-<script src="https://kit.fontawesome.com/5b900cdeed.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://themes.pixelstrap.com/fastkart/assets/css/animate.min.css"/>
 <link rel="stylesheet" type="text/css" href="https://themes.pixelstrap.com/fastkart/assets/css/vendors/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="https://themes.pixelstrap.com/fastkart/assets/css/vendors/feather-icon.css">
@@ -27,3 +26,4 @@
     font-family: sans-serif !important;
   }
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
