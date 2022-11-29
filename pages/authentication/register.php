@@ -1,41 +1,17 @@
 <?php
-require($_SERVER['DOCUMENT_ROOT'] . '/PDO/user.php');
 session_start();
-$error = false;
-  if(isset($_POST['btn-sign-up'])) {
-    $result = clientSelectAll('email, role');
-    foreach($result as $value) {
-      if ($_POST['email'] === $value['email']) {
-        $error = true;
-      } else {
-
-      };
-    }
-    if (!$error) {
-      $_SESSION['role'] = null;
-      $_SESSION['email'] = $_POST['email'];
-      $_SESSION['fullName'] = $_POST['fullName'];
-      $result = clientSelectAll('id', '1 ORDER BY id DESC LIMIT 1');
-      if ($result) {
-        foreach ($result as $valueId) {
-          $id = (int) substr($valueId['id'], 2);
-        }
-      }
-      $_SESSION[''] = 'SN'.($id + 1);
-      clientInsert('SN'.($id + 1), $_POST['password'], $_POST['fullName'], $_POST['email']);
-      header('Location: /home');
-    };
-  }
 ?>
 <!doctype html>
 <html lang="en">
 <head>
   <title>Sunny Shop</title>
   <?php
-  require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/helmet.php')
+    require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/helmet.php')
   ?>
   <link rel="stylesheet" href="/resources/css/header.css">
   <link rel="stylesheet" href="/resources/css/slide.css">
+  <link rel="stylesheet" href="/resources/css/login.css">
+  <script src="https://kit.fontawesome.com/5b900cdeed.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <?php
@@ -46,7 +22,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
     <div class="row">
       <div class="col-12">
         <div class="breadscrumb-contain">
-          <h2 class="mb-2">Log In</h2>
+          <h2 class="mb-2">Register</h2>
           <nav>
             <ol class="breadcrumb mb-0">
               <li class="breadcrumb-item">
@@ -54,7 +30,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                   <i class="fa-solid fa-house"></i>
                 </a>
               </li>
-              <li class="breadcrumb-item active">Log In</li>
+              <li class="breadcrumb-item active">Register</li>
             </ol>
           </nav>
         </div>
@@ -76,40 +52,60 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
           <div class="log-in-title">
             <h3>Welcome To Fastkart</h3>
             <h4>Create New Account</h4>
-            <?php if ($error) echo "<h4 style='color: red'>Email tồn tại</h4>";?>
           </div>
           <div class="input-box">
             <form method="post" class="row g-4">
+              <div class="form-outline error-container active-error">
+                <i class="fa-solid fa-circle-xmark"></i>
+                <span class="error-message-form"></span>
+              </div>
               <div class="col-12">
-                <div class="form-floating theme-form-floating">
+                <div class="form-floating theme-form-floating log-in-form">
                   <input type="text" class="form-control" id="fullName" placeholder="Full Name" name="fullName">
-                  <label for="fullName">Full Name</label>
+                  <label for="fullName" class="form-label">Full Name</label>
                 </div>
+                <span class="form-message"></span>
               </div>
               <div class="col-12">
-                <div class="form-floating theme-form-floating">
+                <div class="form-floating theme-form-floating log-in-form">
                   <input type="email" class="form-control" id="email" placeholder="Email Address" name="email">
-                  <label for="email">Email Address</label>
+                  <label for="email" class="form-label">Email Address</label>
                 </div>
+                <span class="form-message"></span>
               </div>
               <div class="col-12">
-                <div class="form-floating theme-form-floating">
+                <div class="form-floating form-floating-password theme-form-floating log-in-form">
                   <input type="password" class="form-control" id="password" placeholder="Password" name="password">
-                  <label for="password">Password</label>
+                  <label for="password" class="form-label">Password</label>
+                  <button type="button" class="show-password" id="show-password">
+                    <img src="/resources/images/icon/eyes.png" alt="" width="10"/>
+                  </button>
+                  <button type="button" class="hidden-password none" id="hidden-password">
+                    <img src="/resources/images/icon/eyes-slash.png" alt="" width="10"/>
+                  </button>
                 </div>
+                <span class="form-message"></span>
+              </div>
+              <div class="col-12">
+                <div class="form-floating theme-form-floating log-in-form">
+                  <input type="password" class="form-control" id="re_password" placeholder="Re-Password" name="re_password">
+                  <label for="re_password" class="form-label">Re-Password</label>
+                </div>
+                <span class="form-message"></span>
               </div>
               <div class="col-12">
                 <div class="forgot-box">
                   <div class="form-check ps-0 m-0 remember-box">
-                    <input class="checkbox_animated check-box" type="checkbox"
-                           id="flexCheckDefault">
-                    <label class="form-check-label" for="flexCheckDefault">I agree with
-                      <span>Terms</span> and <span>Privacy</span></label>
+                    <input class="checkbox_animated check-box" type="checkbox" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                      I agree with
+                      <span>Terms</span> and <span>Privacy</span>
+                    </label>
                   </div>
                 </div>
               </div>
               <div class="col-12">
-                <button class="btn btn-animation w-100" type="submit" name="btn-sign-up">Sign Up</button>
+                <button id="btn-sign-up" class="btn btn-animation w-100" type="submit" name="btn-sign-up">Sign Up</button>
               </div>
             </form>
           </div>
@@ -147,5 +143,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
 <script src="https://themes.pixelstrap.com/fastkart/assets/js/feather/feather.min.js"></script>
 <script src="https://themes.pixelstrap.com/fastkart/assets/js/feather/feather-icon.js"></script>
 <script src="https://themes.pixelstrap.com/fastkart/assets/js/lazysizes.min.js"></script>
+<script src="/resources/js/const.js"></script>
+<script src="/resources/js/register.js"></script>
 </body>
 </html>
