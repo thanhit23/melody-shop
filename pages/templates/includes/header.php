@@ -160,8 +160,12 @@ if (isset($_POST['logout'])) {
                       </a>
                     </li>
                     <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle no-content" href="#products"
-                         data-bs-toggle="dropdown">Product</a>
+                      <a class="nav-link ps-xl-2 ps-0 no-content" href="/categories?search=Áo">
+                        Category
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link nav-link-2" href="javascrip:void(0);">About</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link nav-link-2" href="contact-us.html">Contact</a>

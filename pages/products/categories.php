@@ -49,8 +49,7 @@ require ($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                       <input type="search" class="form-control" id="search" placeholder="Search ..">
                       <label for="search">Search</label>
                     </div>
-
-                    <ul class="category-list custom-padding custom-height">
+                    <!-- <ul class="category-list custom-padding custom-height">
                       <li>
                         <div class="form-check ps-0 m-0 category-list-box">
                           <input class="checkbox_animated" type="checkbox" id="fruit">
@@ -186,7 +185,7 @@ require ($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                           </label>
                         </div>
                       </li>
-                    </ul>
+                    </ul> -->
                   </div>
                 </div>
               </div>
@@ -227,7 +226,7 @@ require ($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
         <div class="row g-sm-4 g-3 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 product-list-section">
           <?php
           $filter = $_GET['search'];
-          $result = commoditySelectAll("commodity_name LIKE '%$filter%'");
+          $result = commoditySelectAll("name LIKE '%$filter%'");
           if ($result) {
             foreach ($result as $value) {
               $price = number_format($value['unit_price'], 0, '', ',');
@@ -242,7 +241,7 @@ require ($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                 <div class="product-box-3 h-100 wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
                   <div class="product-header">
                     <div class="product-image">
-                      <a href="/product.html?name=<?= $value['commodity_name'] ?>&id=<?= $value['id_product'] ?>">
+                      <a href="/product.html?name=<?= $value['name'] ?>&id=<?= $value['id_product'] ?>">
                         <img src="<?= $img[0] ?>" class="img-fluid blur-up lazyloaded" alt="">
                       </a>
                     </div>

@@ -28,7 +28,7 @@ const checkName = () => {
     const errorMessage = name.parentElement.nextElementSibling;
     errors['name'] = booleans;
 
-    if (nameLength < 12) {
+    if (!nameValue) {
         name.parentElement.classList.add('invalid');
         errorMessage.innerHTML = 'Tên có độ dài ít nhất 12 ký tự';
         booleans = true;
