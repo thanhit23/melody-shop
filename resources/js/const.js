@@ -6,5 +6,6 @@ var route = {
   createUser: `${BASE_URL}/create_user.php`,
   addCart: `${BASE_URL}/add_cart.php`,
   logOut: `${BASE_URL}/log_out.php`,
+  forgot: `${BASE_URL}/forgot.php`,
   addPreSelectProductsCart: `${BASE_URL}/add_preSelect_product.php`,
 };
