@@ -41,7 +41,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php')
   </div>
 </section>
 <?php
-$special = "id_commodity = $id";
+$special = "id_product = $id";
 $result = commoditySelectAll($special);
 if ($result) {
   foreach ($result as $value) {
@@ -92,7 +92,7 @@ if ($result) {
               </div>
               <div class="col-xl-6 wow fadeInUp">
                 <div class="right-box-contain">
-                  <h2 class="name"><?php echo $value['name'] ?></h2>
+                  <h4 class="name"><?php echo $value['name'] ?></h4>
                   <div class="price-rating">
                     <h3 class="theme-color price">
                       <?php echo $price . ' đ' ?>
@@ -120,22 +120,25 @@ if ($result) {
                       <span class="review"><?php echo $value['view'] ?> Customer Review</span>
                     </div>
                   </div>
+                  
                   <div class="note-box product-packge">
-                    <div class="cart_qty qty-box product-qty">
-                      <div class="input-group">
-                        <button type="button" class="qty-right-plus" data-type="plus" data-field="">
-                          <i class="fa fa-plus" aria-hidden="true"></i>
-                        </button>
-                        <input class="form-control input-number qty-input" type="text"
-                               name="quantity" value="0">
-                        <button type="button" class="qty-left-minus" data-type="minus"
-                                data-field="">
-                          <i class="fa fa-minus" aria-hidden="true"></i>
-                        </button>
+                    <div class="addtocart_btn">
+                      <div class="qty-box cart_qty">
+                        <div class="input-group">
+                          <button type="button" class="btn qty-left-minus" data-type="minus"
+                            data-field="">
+                            <i class="fa fa-minus" aria-hidden="true"></i>
+                          </button>
+                          <input class="form-control input-number qty-input" type="text"
+                            name="quantity" value="1">
+                          <button type="button" class="btn qty-right-plus" data-type="plus"
+                            data-field="">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                          </button>
+                        </div>
                       </div>
                     </div>
-                    <button
-                            class="btn btn-md bg-dark cart-button text-white w-100">Add To Cart
+                    <button class="btn btn-md bg-dark cart-button text-white w-100">Add To Cart
                     </button>
                   </div>
                   <div class="paymnet-option">
@@ -183,9 +186,9 @@ if ($result) {
             <div class="right-sidebar-box">
               <div class="vendor-box">
                 <div class="verndor-contain">
-                  <div class="vendor-image">
+                  <!-- <div class="vendor-image">
                     <img src="../../resources/images/Sunny-Shop.png" class="blur-up lazyload" alt="">
-                  </div>
+                  </div> -->
                   <div class="vendor-name">
                     <h5 class="fw-500">Melody Co.</h5>
                     <div class="product-rating mt-1">

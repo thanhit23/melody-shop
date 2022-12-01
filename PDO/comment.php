@@ -29,7 +29,7 @@ function commentDelete($id) {
 }
 
 function selectAllCommentAndUser($idProduct) {
-  $sql = "SELECT * FROM `comment` INNER JOIN customer ON customer.id_customer = comment.id_customer WHERE id_commodity = $idProduct";
+  $sql = "SELECT * FROM `comment` INNER JOIN user ON user.id_user = comment.id_user WHERE id_product = $idProduct";
   return query($sql);
 }
 
