@@ -13,6 +13,7 @@
   RewriteRule ^home$ /pages/home/index.php [L]
   RewriteRule ^product.html$ /pages/products/detail.php [L]
   RewriteRule ^categories$ /pages/products/categories.php [L]
+  RewriteRule ^cart$ /pages/cart/index.php [L]
   RewriteRule ^login$ /pages/authentication/login.php [L]
   RewriteRule ^signup$ /pages/authentication/register.php [L]
   RewriteRule ^forgot$ /pages/authentication/forgot.php [L]

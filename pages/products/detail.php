@@ -43,8 +43,8 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php')
 <?php
 $special = "id_product = $id";
 $result = commoditySelectAll($special);
-if ($result) {
-  foreach ($result as $value) {
+if ($result) :
+  foreach ($result as $value) :
     $unit_price = $value['unit_price'];
     $price = number_format($unit_price, 0, '', ',');
     $discount = $value['discount'];
@@ -519,8 +519,8 @@ if ($result) {
       </div>
     </section>
     <?php
-  }
-}
+  endforeach;
+endif;
 ?>
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/footer.php')

@@ -38,7 +38,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
           <div class="log-in-box">
             <div class="log-in-title">
               <h3>Welcome To Melody</h3>
-              <h4>Forgot your password</h4>
+              <h4>Change your password</h4>
             </div>
             <div class="input-box">
               <form class="row g-4">
@@ -51,7 +51,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                   <span class="form-message"></span>
                 </div>
                 <div class="col-12">
-                  <button id="submit" class="btn btn-animation w-100" type="submit">Forgot Password</button>
+                  <button id="submit" class="btn btn-animation w-100" type="submit">Change Password</button>
                 </div>
               </form>
             </div>

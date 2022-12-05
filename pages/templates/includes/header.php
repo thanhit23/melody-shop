@@ -1,10 +1,12 @@
 <?php
+session_start();
 if (isset($_POST['logout'])) {
   $_SESSION['email'] = null;
   $_SESSION['fullName'] = null;
   $_SESSION['idUser'] = null;
   $_SESSION['role'] = null;
 }
+require_once($_SERVER['DOCUMENT_ROOT'] . '/PDO/cart.php');
 ?>
 <header class="pb-md-4 pb-0" style="background-color: #f8f8f8;">
   <div class="top-nav top-header sticky-header">
@@ -49,27 +51,68 @@ if (isset($_POST['logout'])) {
                 </li>
                 <li class="right-side">
                   <div class="onhover-dropdown header-badge">
+                    <?php if (!$_SESSION['fullName']) :?>
+                    <a href="/login" class="btn p-0 position-relative header-wishlist">
+                      <i data-feather="shopping-cart"></i>
+                    </a>
+                    <?php endif;
+                    if ($_SESSION['fullName']) :?>
                     <button type="button" class="btn p-0 position-relative header-wishlist">
                       <i data-feather="shopping-cart"></i>
-                      <!-- <span class="position-absolute top-0 start-100 translate-middle badge">
-                        0
+                      <?php $result = countItemCart();
+                      if ($result) :
+                        foreach ($result as $value) :
+                      ?>
+                      <span class="position-absolute top-0 start-100 translate-middle badge">
+                        <?= $value['quantity'] ?>
                         <span class="visually-hidden">unread messages</span>
-                      </span> -->
+                      </span>
+                      <?php
+                          endforeach;
+                        endif;
+                      ?>
                     </button>
+                    <?php endif; ?>
                     <div class="onhover-div">
+                      <?php if ($_SESSION['fullName']) :?>
                       <ul class="cart-list">
+                        <?php
+                        $result = getListItemProductByIdUser($_SESSION['idUser']);
+                        if ($result) :
+                          foreach ($result as $value) :
+                            $name = $value['name'];
+                            $img = json_decode($value['images']);
+                            $price = number_format($value['unit_price'], 0, '', ',');
+                            $quantity = $value['quantity'];
+                        ?>
                         <li class="product-box-contain">
-                          <p>No Product</p>
+                            <div class="drop-cart">
+                                <a href="product-left-thumbnail.html" class="drop-image">
+                                    <img src="<?= $img[0] ?>" class="blur-up lazyload" alt="">
+                                </a>
+                                <div class="drop-contain">
+                                    <a href="product-left-thumbnail.html">
+                                        <h5><?= $name ?></h5>
+                                    </a>
+                                    <h6><span><?= $quantity ?> x</span> <?= $price ?>đ</h6>
+                                    <button class="close-button close_button">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </button>
+                                </div>
+                            </div>
                         </li>
+                        <?php
+                          endforeach;
+                        endif;
+                        ?>
                       </ul>
-                      <div class="price-box">
-                        <h5>Total :</h5>
-                        <h4 class="theme-color fw-bold">$0</h4>
-                      </div>
                       <div class="button-group">
                         <a href="/cart" class="btn btn-sm cart-button">View Cart</a>
-                        <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color text-white">Checkout</a>
                       </div>
+                      <?php endif;
+                      if (!$_SESSION['fullName']) :?>
+                      <img src="../../../resources/images/image-empty-cart.png" width="100%" alt="">
+                      <?php endif; ?>
                     </div>
                   </div>
                 </li>

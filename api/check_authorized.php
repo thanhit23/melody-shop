@@ -12,7 +12,7 @@
     $res['data'] = null;
     foreach($result_email as $value) {
       $_SESSION['email'] = $value['email'];
-      $_SESSION['fullName'] = $value['usename'];
+      $_SESSION['fullName'] = $value['username'];
       $_SESSION['role'] = $value['role'];
       $_SESSION['idUser'] = $value['id_user'];
     }

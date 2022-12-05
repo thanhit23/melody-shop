@@ -1,8 +1,9 @@
+<!DOCTYPE html>
+<html lang="en">
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . '/PDO/product.php');
 require($_SERVER['DOCUMENT_ROOT'] . '/global.php');
 
-require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/helmet.php');
 if (isset($_POST['btn-submit'])) {
   $name = $_POST['name'];
   $price = (int) $_POST['price'];
@@ -15,6 +16,12 @@ if (isset($_POST['btn-submit'])) {
   productInsert($name, $price, $discount, '["/resources/images/uploads/'.$image.'"]', $description, $special, $view, $type);
 }
 ?>
+<head>
+  <?php
+    require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/helmet.php');
+  ?>
+  <link rel="stylesheet" href="../../resources/css/login.css" />
+</head>
 <body class="g-sidenav-show bg-gray-100">
 <div class="min-height-300 bg-primary position-absolute w-100"></div>
 <?php
@@ -77,68 +84,76 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vert
             <div class="card-body">
               <div class="row">
                 <div class="col-md-6">
-                  <div class="form-group">
+                  <div class="form-group log-in-form">
                     <label for="example-text-input" class="form-control-label">Tên</label>
-                    <input name="name" class="form-control" type="text" placeholder="Tên Sản Phẩm...">
+                    <input id="name" name="name" class="form-control" type="text" placeholder="Tên Sản Phẩm...">
                   </div>
+                  <span class="form-message"></span>
                 </div>
                 <div class="col-md-6">
-                  <div class="form-group">
+                  <div class="form-group log-in-form">
                     <label for="example-text-input" class="form-control-label">Đơn Giá</label>
-                    <input name="price" class="form-control" type="number" placeholder="Đơn Giá...">
+                    <input id="price" name="price" class="form-control" type="number" placeholder="Đơn Giá...">
                   </div>
+                  <span class="form-message"></span>
                 </div>
                 <div class="col-md-6">
-                  <div class="form-group">
+                  <div class="form-group log-in-form">
                     <label for="example-text-input" class="form-control-label">Giảm Giá</label>
-                    <input name="discount" class="form-control" type="number" placeholder="Giảm Giá...">
+                    <input id="discount" name="discount" class="form-control" type="number" placeholder="Giảm Giá...">
                   </div>
+                  <span class="form-message"></span>
                 </div>
                 <div class="col-md-6">
-                  <div class="form-group">
+                  <div class="form-group log-in-form">
                     <label for="example-text-input" class="form-control-label">Hình Ảnh</label>
-                    <input name="uploadFile" class="form-control" type="file">
+                    <input id="uploadFile"  name="uploadFile" class="form-control" type="file">
                   </div>
+                  <span class="form-message"></span>
                 </div>
                 <div class="col-md-6">
-                  <div class="form-group">
+                  <div class="form-group log-in-form">
                     <label for="example-text-input" class="form-control-label">
                       Mô tả
-                      <textarea name="description" rows="6" cols="45"></textarea>
                     </label>
+                    <textarea id="description" name="description" rows="5" cols="36"></textarea>
                   </div>
+                  <span class="form-message"></span>
                 </div>
                 <div class="col-md-6">
-                  <div class="form-group">
+                  <div class="form-group log-in-form">
                     <label for="example-text-input" class="form-control-label">Lượt Xem</label>
-                    <input name="view" class="form-control" type="number" placeholder="Lượt Xem Của Sản Phẩm...">
+                    <input id="view" name="view" class="form-control" type="number" placeholder="Lượt Xem Của Sản Phẩm...">
                   </div>
+                  <span class="form-message"></span>
                 </div>
                 <div class="col-md-6">
-                  <div class="form-group">
+                  <div class="form-group log-in-form">
                     <label for="special" class="form-control-label">Đặc Biệt</label>
                     <select name="special" id="special" style="border: 1px solid #d2d6da;font-size: 0.875rem;font-weight: 400;line-height: 1.4rem;color: #495057;">
                       <option value="1">Có</option>
                       <option value="2">Không</option>
                     </select>
                   </div>
+                  <span class="form-message"></span>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="type" class="form-control-label">Loại</label>
                     <select name="type" id="type" style="border: 1px solid #d2d6da;font-size: 0.875rem;font-weight: 400;line-height: 1.4rem;color: #495057;">
                       <option value="0">Chọn Loại</option>
-                      <option value="1">Samsung</option>
-                      <option value="2">Iphone</option>
-                      <option value="3">Redmi</option>
+                      <option value="1">Áo</option>
+                      <option value="2">Quần</option>
+                      <option value="3">Áo khoác</option>
                     </select>
                   </div>
+                  <span class="form-message"></span>
                 </div>
               </div>
             </div>
             <div class="card-header pb-0">
               <div class="d-flex align-items-center">
-                <button name="btn-submit" class="btn btn-primary btn-sm ms-auto">Submit</button>
+                <button id="btn-submit" name="btn-submit" class="btn btn-primary btn-sm ms-auto">Submit</button>
               </div>
             </div>
           </div>
@@ -153,5 +168,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vert
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/script.php');
 ?>
+<script src="../../resources/js/const.js"></script>
+<script src="../../resources/js/add-product.js"></script>
 </body>
 </html>
