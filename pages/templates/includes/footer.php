@@ -166,3 +166,5 @@
 <script src="https://themes.pixelstrap.com/fastkart/assets/js/timer1.js"></script>
 <script src="https://themes.pixelstrap.com/fastkart/assets/js/timer2.js"></script>
 <script src="../../../resources/js/const.js"></script>
+<script id="toast-messages" type="text/javascript"></script>
+

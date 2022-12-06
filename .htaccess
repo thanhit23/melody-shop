@@ -17,5 +17,6 @@
   RewriteRule ^login$ /pages/authentication/login.php [L]
   RewriteRule ^signup$ /pages/authentication/register.php [L]
   RewriteRule ^forgot$ /pages/authentication/forgot.php [L]
+  RewriteRule ^admin/products$ /pages/admin/tables.php [L]
 
 </IfModule>

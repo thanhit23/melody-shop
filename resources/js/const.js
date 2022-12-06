@@ -2,6 +2,8 @@ const BASE_URL = 'http://localhost/api';
 
 var route = {
   checkAuth: `${BASE_URL}/check_auth.php`,
+  deleteProduct: `${BASE_URL}/delete_product.php`,
+  updateProduct: `${BASE_URL}/update_product.php`,
   checkAuthorized: `${BASE_URL}/check_authorized.php`,
   createUser: `${BASE_URL}/create_user.php`,
   addCart: `${BASE_URL}/add_cart.php`,

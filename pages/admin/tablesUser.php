@@ -1,12 +1,11 @@
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . '/PDO/user.php');
-require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/helmet.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/helper/template.php');
+requiredTemplateAdmin('helmet');
 ?>
 <body class="g-sidenav-show bg-gray-100">
 <div class="min-height-300 bg-primary position-absolute w-100"></div>
-<?php
-require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vertical.php');
-?>
+<?php requiredTemplateAdmin('navigate_bar'); ?>
 <main class="main-content position-relative border-radius-lg ">
   <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
        data-scroll="false">
@@ -183,12 +182,10 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vert
         }
       }
     }
-    require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/footer.php');
+    requiredTemplateAdmin('footer');
     ?>
   </div>
 </main>
-<?php
-require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/script.php');
-?>
+<?php requiredTemplateAdmin('script'); ?>
 </body>
 </html>

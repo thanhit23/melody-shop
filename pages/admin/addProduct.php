@@ -3,6 +3,7 @@
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . '/PDO/product.php');
 require($_SERVER['DOCUMENT_ROOT'] . '/global.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/helper/template.php');
 
 if (isset($_POST['btn-submit'])) {
   $name = $_POST['name'];
@@ -17,16 +18,12 @@ if (isset($_POST['btn-submit'])) {
 }
 ?>
 <head>
-  <?php
-    require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/helmet.php');
-  ?>
+  <?php requiredTemplateAdmin('helmet'); ?>
   <link rel="stylesheet" href="../../resources/css/login.css" />
 </head>
 <body class="g-sidenav-show bg-gray-100">
 <div class="min-height-300 bg-primary position-absolute w-100"></div>
-<?php
-require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vertical.php');
-?>
+<?php requiredTemplateAdmin('navigate_bar'); ?>
 <main class="main-content position-relative border-radius-lg ">
   <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
        data-scroll="false">
@@ -159,15 +156,11 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vert
           </div>
         </div>
       </div>
-      <?php
-      require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/footer.php');
-      ?>
+      <?php requiredTemplateAdmin('footer'); ?>
     </div>
   </form>
 </main>
-<?php
-require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/script.php');
-?>
+<?php requiredTemplateAdmin('script'); ?>
 <script src="../../resources/js/const.js"></script>
 <script src="../../resources/js/add-product.js"></script>
 </body>

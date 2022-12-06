@@ -13,9 +13,6 @@ session_start();
   ?>
   <link rel="stylesheet" href="/resources/css/header.css">
   <link rel="stylesheet" href="/resources/css/slide.css">
-  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 </head>
 <body>
 <?php
@@ -529,7 +526,6 @@ endif;
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/footer.php')
 ?>
-<script id="toast-messages" type="text/javascript"></script>
 <script src="../../resources/js/add-cart.js"></script>
 </body>
 </html>
