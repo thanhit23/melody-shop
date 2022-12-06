@@ -89,7 +89,7 @@ $id_user = $_SESSION['idUser'];
                             <table class="table">
                                 <tbody>
                                     <?php
-                                    $result = selectItemByIdUser(5);
+                                    $result = selectItemByIdUser($id_user);
                                     if ($result) :
                                         foreach ($result as $value) :
                                             $unit_price = $value['unit_price'];

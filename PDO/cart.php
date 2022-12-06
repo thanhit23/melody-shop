@@ -2,7 +2,7 @@
 require_once ('pdo.php');
 
 /**
- * @param $id
+ * @param int $id
  * @return array
  */
 
@@ -13,7 +13,7 @@ function selectItemByIdUser($id) {
 
 
 /**
- * @param $id
+ * @param int $id
  * @return array
  */
 
@@ -33,9 +33,35 @@ function countItemCart() {
 }
 
 
+/**
+ * @param int $id_product
+ * @param int $id_user
+ * @return array
+ */
 
-// function insertComment($content, $id_product, $id_user) {
-//   $createAt = date('Y-m-d');
-//   $sql = "INSERT INTO `comment`(`content`, `id_product`, `id_user`, `create_at`) VALUES (?,?,?,?)";
-//   execute($sql, $content, $id_product, $id_user, $createAt);
-// }
+function checkExistItem($id_product, $id_user) {
+  $sql = "SELECT * FROM `cart` WHERE `id_product` = $id_product AND `id_user` = $id_user";
+  return query($sql, $id_product, $id_user);
+}
+
+
+/**
+ * @param int $quantity
+ * @param int $id_product
+ */
+
+function updateQuantity($quantity, $id_product) {
+  $sql = "UPDATE `cart` SET `quantity`= $quantity WHERE `id_product` = $id_product";
+  execute($sql, $quantity, $id_product);
+}
+
+
+/**
+ * @param int $quantity
+ * @param int $id_product
+ */
+
+function insertCart($id_user, $id_product, $quantity) {
+  $sql = "INSERT INTO `cart`(`id_user`, `id_product`, `quantity`) VALUES (?,?,?)";
+  execute($sql, $id_user, $id_product, $quantity);
+}

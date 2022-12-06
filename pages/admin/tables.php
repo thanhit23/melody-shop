@@ -91,9 +91,9 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vert
                 <tbody>
                 <?php
                 $result = commodityPagination('0,10');
-                if ($result) {
+                if ($result) :
                   $index = 0;
-                  foreach ($result as $value) {
+                  foreach ($result as $value) :
                     $index++;
                     $name = $value['name'];
                     $createAt = $value['create_at'];
@@ -103,38 +103,38 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vert
                     ?>
                   <tr>
                     <td class="align-middle" style="padding-left: 1.5rem;">
-                      <?php echo $index ?>
+                      <?= $index ?>
                     </td>
                     <td>
                       <div class="d-flex px-2 py-1">
                         <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm"><?php echo $name ?></h6>
+                          <h6 class="mb-0 text-sm name-product"><?= $name ?></h6>
                         </div>
                       </div>
                     </td>
                     <td>
-                      <p class="text-xs font-weight-bold mb-0"><?php echo $unit_price. ' đ' ?></p>
+                      <p class="text-xs font-weight-bold mb-0"><?= $unit_price. ' đ' ?></p>
                     </td>
                     <td class="align-middle text-center text-sm">
                       <div>
-                        <img src="<?php echo $img[0] ?>" class="avatar avatar-sm me-3" alt="user1">
+                        <img src="<?= $img[0] ?>" class="avatar avatar-sm me-3" alt="user1">
                       </div>
                     </td>
                     <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold"><?php echo $createAt ?></span>
+                      <span class="text-secondary text-xs font-weight-bold"><?= $createAt ?></span>
                     </td>
                     <td class="align-middle">
-                      <a href="./tables.php?IdUpdate=<?php echo $value['id'] ?>">
+                      <a href="./tables.php?IdUpdate=<?= $value['id'] ?>">
                         <span class="badge badge-sm bg-gradient-primary">Edit</span>
                       </a>
-                      <a href="./tables.php?IdDelete=<?php echo $value['id'] ?>">
-                        <button style="border: none;" name="btn-delete" class="badge badge-sm bg-gradient-danger">Delete</button>
-                      </a>
+                      <button type="button" style="border: none;" name="btn-delete" class="btn-delete badge badge-sm bg-gradient-danger" data-id="<?= $value['id_product'] ?>">
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 <?php
-                  }
-                }
+                  endforeach;
+                endif;
                 ?>
                 </tbody>
               </table>
@@ -145,10 +145,10 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vert
     </div>
     <?php
     $idUpdate = $_GET['IdUpdate'];
-    if ($idUpdate) {
-    $result = commoditySelectAll("id = $idUpdate");
-      if ($result) {
-        foreach ($result as $value) {
+    if ($idUpdate) :
+      $result = commoditySelectAll("id = $idUpdate");
+      if ($result) :
+        foreach ($result as $value) :
           ?>
           <div class="row">
             <div class="col-md-8">
@@ -164,31 +164,31 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vert
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="example-text-input" class="form-control-label">Tên</label>
-                          <input name="nameProduct" class="form-control" type="text" value="<?php echo $value['name'] ?>" placeholder="">
+                          <input name="nameProduct" class="form-control" type="text" value="<?= $value['name'] ?>" placeholder="">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="example-text-input" class="form-control-label">Giá</label>
-                          <input name="priceProduct" class="form-control" type="number" value="<?php echo $value['unit_price'] ?>" placeholder="">
+                          <input name="priceProduct" class="form-control" type="number" value="<?= $value['unit_price'] ?>" placeholder="">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="example-text-input" class="form-control-label">Giảm giá</label>
-                          <input name="discountProduct" class="form-control" type="text" value="<?php echo $value['discount'] ?>" placeholder="">
+                          <input name="discountProduct" class="form-control" type="text" value="<?= $value['discount'] ?>" placeholder="">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="example-text-input" class="form-control-label">Mô tả</label>
-                          <input name="descriptionProduct" class="form-control" type="text" value="<?php echo $value['description'] ?>" placeholder="">
+                          <input name="descriptionProduct" class="form-control" type="text" value="<?= $value['description'] ?>" placeholder="">
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="example-text-input" class="form-control-label">Lượt xem</label>
-                          <input name="viewProduct" class="form-control" type="text" value="<?php echo $value['view'] ?>" placeholder="">
+                          <input name="viewProduct" class="form-control" type="text" value="<?= $value['view'] ?>" placeholder="">
                         </div>
                       </div>
                       <div class="col-md-6">
@@ -213,10 +213,10 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vert
               </div>
             </div>
           </div>
-            <?php
-        }
-      }
-    }
+          <?php
+        endforeach;
+      endif;
+    endif;
     require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/footer.php');
     ?>
   </div>
@@ -224,5 +224,6 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vert
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/script.php');
 ?>
+<script src="../../resources/js/product-admin.js"></script>
 </body>
 </html>
