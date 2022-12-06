@@ -1,8 +1,6 @@
 <?php
   session_start();
-  echo $_SESSION['idUser'];
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

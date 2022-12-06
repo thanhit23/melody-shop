@@ -130,13 +130,13 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
         <div class="slider-7_1 arrow-slider img-slider">
           <?php
           $result = commoditySelectAll();
-          if ($result) {
+          if ($result) :
             $array = array_chunk($result, 2, true);
-            for ($i = 0; $i < count($array); $i++) {
+            for ($i = 0; $i < count($array); $i++) :
               ?>
               <div>
                 <?php
-                foreach ($array[$i] as $value) {
+                foreach ($array[$i] as $value) :
                   $name = $value['name'];
                   $unit_price = $value['unit_price'];
                   $price = number_format($unit_price, 0, '', ',');
@@ -181,12 +181,12 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                     </div>
                   </div>
                   <?php
-                }
+                endforeach;
                 ?>
               </div>
               <?php
-            }
-          } ?>
+            endfor;
+          endif; ?>
         </div>
       </div>
     </div>
@@ -387,14 +387,13 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
         <div class="slider-5_2 arrow-slider img-slider">
           <?php
           $result = commoditySelectAll('view > 1200');
-          if ($result) {
+          if ($result) :
             $array = array_chunk($result, 2, true);
-
-            for ($i = 0; $i < count($array); $i++) {
+            for ($i = 0; $i < count($array); $i++) :
               ?>
               <div>
                 <?php
-                foreach ($array[$i] as $value) {
+                foreach ($array[$i] as $value) :
                   $name = $value['name'];
                   $unit_price = $value['unit_price'];
                   $price = number_format($unit_price, 0, '', ',');
@@ -402,8 +401,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                   $priceNew = (int)$unit_price;
                   $discountNew = (int)$discount === 0 ? 1 : $discount;
                   $priceOff = number_format($priceNew / ((100 - $discountNew) / 100), 0);
-                  $db = $value['images'];
-                  $img = json_decode($db);
+                  $img = json_decode($value['images']);
                   ?>
                   <div class="product-box-4 wow fadeInUp">
                     <div class="product-image product-image-2">
@@ -439,12 +437,12 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                     </div>
                   </div>
                   <?php
-                }
+                endforeach;
                 ?>
               </div>
               <?php
-            }
-          } ?>
+            endfor;
+          endif; ?>
         </div>
       </div>
     </div>

@@ -16,7 +16,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vert
           <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="/admin">Pages</a></li>
           <li class="breadcrumb-item text-sm text-white active" aria-current="page"></li>
         </ol>
-        <h6 class="font-weight-bolder text-white mb-0">Product</h6>
+        <h6 class="font-weight-bolder text-white mb-0">Comment</h6>
       </nav>
       <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
         <div class="ms-md-auto pe-md-3 d-flex align-items-center"></div>
@@ -73,9 +73,9 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vert
                 <tbody>
                 <?php
                 $result = commentStatistical();
-                if ($result) {
-                  foreach ($result as $value) {
-                    $id = $value['id'];
+                if ($result) :
+                  foreach ($result as $value) :
+                    $id = $value['id_product'];
                     $name = $value['name'];
                     $amount = $value['amount'];
                     $newest = $value['newest'];
@@ -85,7 +85,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vert
                     <td>
                       <div class="d-flex px-2 py-1">
                         <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm"><?= $name ?></h6>
+                          <h6 class="name-product mb-0 text-sm"><?= $name ?></h6>
                         </div>
                       </div>
                     </td>
@@ -99,14 +99,14 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vert
                       <span class="text-secondary text-xs font-weight-bold"><?= $oldest ?></span>
                     </td>
                     <td class="align-middle">
-                      <a href="/product.html?name=<?php echo $value['name'] ?>&id=<?php echo $value['id'] ?>">
+                      <a href="/product.html?name=<?= $name ?>&id=<?= $id ?>">
                         <span class="badge badge-sm bg-gradient-primary">Detail</span>
                       </a>
                     </td>
                   </tr>
                 <?php
-                  }
-                }
+                  endforeach;
+                endif;
                 ?>
                 </tbody>
               </table>

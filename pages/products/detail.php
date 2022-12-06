@@ -13,6 +13,9 @@ session_start();
   ?>
   <link rel="stylesheet" href="/resources/css/header.css">
   <link rel="stylesheet" href="/resources/css/slide.css">
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/css/toastr.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 </head>
 <body>
 <?php
@@ -31,8 +34,9 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php')
                   <i class="fa-solid fa-house"></i>
                 </a>
               </li>
-              <li class="breadcrumb-item active"
-                  style="width: 300px;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;"><?php echo $_GET['name'] ?></li>
+              <li class="breadcrumb-item active"style="width: 300px;overflow: hidden;display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;">
+                <?php echo $_GET['name'] ?>
+              </li>
             </ol>
           </nav>
         </div>
@@ -43,8 +47,8 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php')
 <?php
 $special = "id_product = $id";
 $result = commoditySelectAll($special);
-if ($result) {
-  foreach ($result as $value) {
+if ($result) :
+  foreach ($result as $value) :
     $unit_price = $value['unit_price'];
     $price = number_format($unit_price, 0, '', ',');
     $discount = $value['discount'];
@@ -120,7 +124,6 @@ if ($result) {
                       <span class="review"><?php echo $value['view'] ?> Customer Review</span>
                     </div>
                   </div>
-                  
                   <div class="note-box product-packge">
                     <div class="addtocart_btn">
                       <div class="qty-box cart_qty">
@@ -129,8 +132,8 @@ if ($result) {
                             data-field="">
                             <i class="fa fa-minus" aria-hidden="true"></i>
                           </button>
-                          <input class="form-control input-number qty-input" type="text"
-                            name="quantity" value="1">
+                          <input id="quantity" class="form-control input-number qty-input" type="text"
+                            name="quantity" value="1" data-id_user="<?= $_SESSION['idUser'] ?>" data-id_product="<?= $id ?>">
                           <button type="button" class="btn qty-right-plus" data-type="plus"
                             data-field="">
                             <i class="fa fa-plus" aria-hidden="true"></i>
@@ -138,7 +141,8 @@ if ($result) {
                         </div>
                       </div>
                     </div>
-                    <button class="btn btn-md bg-dark cart-button text-white w-100">Add To Cart
+                    <button id="btn-add-cart" class="btn btn-md bg-dark cart-button text-white w-100">
+                      Add To Cart
                     </button>
                   </div>
                   <div class="paymnet-option">
@@ -519,11 +523,13 @@ if ($result) {
       </div>
     </section>
     <?php
-  }
-}
+  endforeach;
+endif;
 ?>
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/footer.php')
 ?>
+<script id="toast-messages" type="text/javascript"></script>
+<script src="../../resources/js/add-cart.js"></script>
 </body>
 </html>
