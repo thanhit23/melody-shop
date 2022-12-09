@@ -8,6 +8,7 @@ if (isset($_POST['logout'])) {
 }
 require_once($_SERVER['DOCUMENT_ROOT'] . '/PDO/cart.php');
 ?>
+<script src="../../../resources/js/header.js"></script>
 <header class="pb-md-4 pb-0" style="background-color: #f8f8f8;">
   <div class="top-nav top-header sticky-header">
     <div class="container-fluid-lg">
@@ -86,20 +87,20 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/PDO/cart.php');
                             $quantity = $value['quantity'];
                         ?>
                         <li class="product-box-contain">
-                            <div class="drop-cart">
-                                <a href="product-left-thumbnail.html" class="drop-image">
-                                    <img src="<?= $img[0] ?>" class="blur-up lazyload" alt="">
-                                </a>
-                                <div class="drop-contain">
-                                    <a href="product-left-thumbnail.html">
-                                        <h5><?= $name ?></h5>
-                                    </a>
-                                    <h6><span><?= $quantity ?> x</span> <?= $price ?>đ</h6>
-                                    <button class="close-button close_button">
-                                        <i class="fa-solid fa-xmark"></i>
-                                    </button>
-                                </div>
+                          <div class="drop-cart">
+                            <a href="/product.html?name=<?= $value['name'] ?>&id=<?= $value['id_product'] ?>" class="drop-image">
+                              <img src="<?= $img[0] ?>" class="blur-up lazyload" alt="">
+                            </a>
+                            <div class="drop-contain">
+                              <a href="/product.html?name=<?= $value['name'] ?>&id=<?= $value['id_product'] ?>">
+                                <h5><?= $name ?></h5>
+                              </a>
+                              <h6><span><?= $quantity ?> x</span> <?= $price ?>đ</h6>
+                              <button type="button" class="delete-product close-button close_button" data-id="<?= $value['id_product'] ?>">
+                                <i class="fa-solid fa-xmark"></i>
+                              </button>
                             </div>
+                          </div>
                         </li>
                         <?php
                           endforeach;
@@ -142,7 +143,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/PDO/cart.php');
                         if ($_SESSION['role']) {
                           ?>
                           <li class="product-box-contain">
-                            <a href="/pages/admin/index.php">Administrators</a>
+                            <a href="/admin">Administrators</a>
                           </li>
                           <li class="product-box-contain">
                             <a href="/forgot">Forgot Password</a>

@@ -73,8 +73,8 @@ requiredTemplateAdmin('helmet');
                 $result = clientSelectAll('*');
                 if ($result) {
                   foreach ($result as $value) {
-                    $id = $value['id'];
-                    $name = $value['full_name'];
+                    $id = $value['id_user'];
+                    $name = $value['username'];
                     $imageDb = $value['image'];
                     $img = json_decode($imageDb, true);
                     $email = $value['email'];

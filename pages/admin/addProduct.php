@@ -139,9 +139,9 @@ if (isset($_POST['btn-submit'])) {
                     <label for="type" class="form-control-label">Loại</label>
                     <select name="type" id="type" style="border: 1px solid #d2d6da;font-size: 0.875rem;font-weight: 400;line-height: 1.4rem;color: #495057;">
                       <option value="0">Chọn Loại</option>
-                      <option value="1">Áo</option>
-                      <option value="2">Quần</option>
-                      <option value="3">Áo khoác</option>
+                      <option value="2">Áo</option>
+                      <option value="3">Quần</option>
+                      <option value="4">Áo khoác</option>
                     </select>
                   </div>
                   <span class="form-message"></span>

@@ -43,3 +43,8 @@
     right: 0;
     z-index: 1;
 }
+
+.active-index-page {
+    border-color: #4E97FD !important;
+    color: #4E97FD !important;;
+}

@@ -60,7 +60,7 @@ function clientDelete($id) {
  */
 
 function clientSelectById($id) {
-  $sql = "SELECT * FROM `user` WHERE `id`=?";
+  $sql = "SELECT * FROM `user` WHERE `id_user`=?";
   return queryOne($sql, $id);
 }
 

@@ -14,9 +14,17 @@
   RewriteRule ^product.html$ /pages/products/detail.php [L]
   RewriteRule ^categories$ /pages/products/categories.php [L]
   RewriteRule ^cart$ /pages/cart/index.php [L]
+  RewriteRule ^checkout$ /pages/checkout/index.php [L]
+
   RewriteRule ^login$ /pages/authentication/login.php [L]
   RewriteRule ^signup$ /pages/authentication/register.php [L]
   RewriteRule ^forgot$ /pages/authentication/forgot.php [L]
+
   RewriteRule ^admin/products$ /pages/admin/tables.php [L]
+  RewriteRule ^admin/product$ /pages/admin/addProduct.php [L]
+  RewriteRule ^admin/comments$ /pages/admin/tablesComment.php [L]
+  RewriteRule ^admin/users$ /pages/admin/tablesUser.php [L]
+  RewriteRule ^admin/profile$ /pages/admin/profile.php [L]
+  RewriteRule ^admin$ /pages/admin/index.php [L]
 
 </IfModule>

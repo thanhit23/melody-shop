@@ -147,7 +147,7 @@ requiredTemplateAdmin('helmet');
                     for ($i = 1; $i <= $length; $i++) :
                       ?>
                       <li class="page-item">
-                        <a class="page-link" href="/admin/products?page=<?= $i ?>">
+                        <a class="page-link <?php if ($i === (int) $_GET['page']) echo 'active-index-page'; ?>" href="/admin/products?page=<?= $i ?>">
                           <?= $i ?>
                         </a>
                       </li>
