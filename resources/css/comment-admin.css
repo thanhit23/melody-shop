@@ -1,8 +1,0 @@
-.name-product {
-  width: 300px;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  white-space: normal;
-}

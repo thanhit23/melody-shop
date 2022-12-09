@@ -7,6 +7,7 @@ const priceDiscountElement = document.getElementById('price-discount');
 const priceTotalElement = document.getElementById('price-total');
 const priceShippingElement = document.getElementById('price-shipping');
 const totalElement = document.getElementById('sub-total');
+const processCheckoutElement = document.getElementById('process-checkout');
 const itemLenght = selectProductElement.length;
 
 function formatMoney(number) {
@@ -14,7 +15,7 @@ function formatMoney(number) {
 }
 
 function formatMoneyToNumber(number) {
-  return Number(number.toString().replace(",", ""));
+  return Number(number.toString().replace(/,/g, ""));
 }
 
 for (let i = 0; i < itemLenght; i++) {
@@ -101,7 +102,7 @@ for (let i = 0; i < itemLenght; i++) {
 
     const totalValue = formatMoneyToNumber(total.innerHTML);
 
-    if (checked) {priceShippinglElement
+    if (checked) {
       const priceSub = formatMoney(subTotalValueOrigin + totalValue);
       const price = formatMoney(subTotalValueOrigin + totalValue + priceShippingValue);
       subTotalElement.innerHTML = priceSub;
@@ -127,4 +128,25 @@ btnCouponDiscount.addEventListener('click', () => {
     priceDiscountElement.innerHTML = formatMoney(subTotalValue * (10 / 100));
     priceTotalElement.innerHTML = formatMoney(subTotalValue - (subTotalValue * (10 / 100)) + priceShippingValue);
   }
+})
+
+processCheckoutElement.addEventListener('click', () => {
+  const arrProductCheckout = [];
+  const formData = new FormData();
+
+  for (let i = 0; i < itemLenght; i++) {
+    if (selectProductElement[i].checked === true) {
+      arrProductCheckout.push(selectProductElement[i].dataset.id);
+    }
+  }
+
+  formData.append('id_product', arrProductCheckout);
+
+  fetch(route.select_product_checkout, {method: 'POST', body: formData})
+    .then(data => data.json())
+    .then(({ status }) => {
+      if (status) {
+        setInterval(() => window.location = 'http://localhost/checkout', 3000);
+      }
+    })
 })

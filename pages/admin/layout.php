@@ -1,6 +1,7 @@
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . '/PDO/product.php');
-require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/helmet.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/helper/template.php');
+requiredTemplateAdmin('helmet');
 $idDelete = (int) $_GET['IdDelete'];
 ?>
 <body class="g-sidenav-show bg-gray-100">

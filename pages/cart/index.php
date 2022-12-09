@@ -148,7 +148,7 @@ $id_user = $_SESSION['idUser'];
                                                 <td class="save-remove">
                                                     <h4 class="table-title text-content">Action</h4>
                                                     <div class="payment-select">
-                                                        <input class="select-product-item" type="checkbox" name="select">
+                                                        <input class="select-product-item" type="checkbox" name="select" data-id="<?= $value['id_product'] ?>">
                                                         <p>Payment</p>
                                                     </div>
                                                     <button class="btn--remove" href="javascript:void(0)">Remove</button>
@@ -212,10 +212,8 @@ $id_user = $_SESSION['idUser'];
                         <div class="button-group cart-button">
                             <ul>
                                 <li>
-                                    <button onclick="location.href = 'checkout.html';"
-                                        class="btn btn-animation proceed-btn fw-bold">Process To Checkout</button>
+                                    <button id="process-checkout" class="btn btn-animation proceed-btn fw-bold">Process To Checkout</button>
                                 </li>
-
                                 <li>
                                     <button onclick="location.href = '/home';"
                                         class="btn btn-light shopping-button text-dark">

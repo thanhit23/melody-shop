@@ -3,6 +3,8 @@
 <script src="../../resources/js/plugins/perfect-scrollbar.min.js"></script>
 <script src="../../resources/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="../../resources/js/plugins/chartjs.min.js"></script>
+<script src="../../resources/js/const.js"></script>
+<script id="toast-messages" type="text/javascript"></script>
 <script>
     var ctx1 = document.getElementById("chart-line").getContext("2d");
 

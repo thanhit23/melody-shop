@@ -3,6 +3,7 @@
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . '/PDO/product.php');
 require($_SERVER['DOCUMENT_ROOT'] . '/global.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/helper/template.php');
 
 if (isset($_POST['btn-submit'])) {
   $name = $_POST['name'];
@@ -17,16 +18,12 @@ if (isset($_POST['btn-submit'])) {
 }
 ?>
 <head>
-  <?php
-    require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/helmet.php');
-  ?>
+  <?php requiredTemplateAdmin('helmet'); ?>
   <link rel="stylesheet" href="../../resources/css/login.css" />
 </head>
 <body class="g-sidenav-show bg-gray-100">
 <div class="min-height-300 bg-primary position-absolute w-100"></div>
-<?php
-require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vertical.php');
-?>
+<?php requiredTemplateAdmin('navigate_bar'); ?>
 <main class="main-content position-relative border-radius-lg ">
   <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
        data-scroll="false">
@@ -142,9 +139,9 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vert
                     <label for="type" class="form-control-label">Loại</label>
                     <select name="type" id="type" style="border: 1px solid #d2d6da;font-size: 0.875rem;font-weight: 400;line-height: 1.4rem;color: #495057;">
                       <option value="0">Chọn Loại</option>
-                      <option value="1">Áo</option>
-                      <option value="2">Quần</option>
-                      <option value="3">Áo khoác</option>
+                      <option value="2">Áo</option>
+                      <option value="3">Quần</option>
+                      <option value="4">Áo khoác</option>
                     </select>
                   </div>
                   <span class="form-message"></span>
@@ -159,15 +156,11 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vert
           </div>
         </div>
       </div>
-      <?php
-      require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/footer.php');
-      ?>
+      <?php requiredTemplateAdmin('footer'); ?>
     </div>
   </form>
 </main>
-<?php
-require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/script.php');
-?>
+<?php requiredTemplateAdmin('script'); ?>
 <script src="../../resources/js/const.js"></script>
 <script src="../../resources/js/add-product.js"></script>
 </body>

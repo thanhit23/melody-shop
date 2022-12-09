@@ -108,7 +108,7 @@ btnSignIn.addEventListener('click', e => {
     checkEmail();
     checkPassword();
     checkRePassword();
-    
+
     const arrayErrors = Object.values(errors);
     const check = arrayErrors.find(e => e === false);
     if (check || check === undefined) {
@@ -125,7 +125,7 @@ btnSignIn.addEventListener('click', e => {
         formData.append('password', password.value);
         fetch(route.createUser, {method: 'POST', body: formData})
             .then(data => data.json())
-            .then(({ status, message }) => {
+            .then(({status, message}) => {
                 if (!status) {
                     errorMessages.innerHTML = message;
                     errorElement.classList.remove('active-error');

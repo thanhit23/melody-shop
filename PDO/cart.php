@@ -55,6 +55,15 @@ function updateQuantity($quantity, $id_product) {
   execute($sql, $quantity, $id_product);
 }
 
+/**
+ * @param int $id_product
+ */
+
+function updateQuickPayment($id_product) {
+  $sql = "UPDATE `cart` SET `quick_payment`=1 WHERE `id_product`=$id_product";
+  execute($sql, $id_product);
+}
+
 
 /**
  * @param int $quantity

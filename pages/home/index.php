@@ -150,8 +150,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                   <div class="product-box-4 wow fadeInUp">
                     <div class="product-image product-image-2">
                       <a href="/product.html?name=<?= $value['name'] ?>&id=<?= $value['id_product'] ?>">
-                        <img src="<?= $img[0] ?>"
-                             class="img-fluid blur-up lazyload" alt="">
+                        <img src="<?= $img[0] ?>" class="img-fluid blur-up lazyload" alt="">
                       </a>
                     </div>
                     <div class="product-detail">
@@ -406,8 +405,7 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/header.php');
                   <div class="product-box-4 wow fadeInUp">
                     <div class="product-image product-image-2">
                       <a href="/product.html?name=<?= $value['name'] ?>&id=<?= $value['id_product'] ?>">
-                        <img src="<?= $img[0] ?>"
-                             class="img-fluid blur-up lazyload" alt="">
+                        <img src="<?= $img[0] ?>" class="img-fluid blur-up lazyload" alt="">
                       </a>
                     </div>
                     <div class="product-detail">

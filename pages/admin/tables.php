@@ -1,29 +1,11 @@
 <?php
 require($_SERVER['DOCUMENT_ROOT'] . '/PDO/product.php');
-require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/helmet.php');
-$idDelete = (int) $_GET['IdDelete'];
-
+require($_SERVER['DOCUMENT_ROOT'] . '/helper/template.php');
+requiredTemplateAdmin('helmet');
 ?>
 <body class="g-sidenav-show bg-gray-100">
 <div class="min-height-300 bg-primary position-absolute w-100"></div>
-<?php
-if ($idDelete) {
-  commodityDelete($idDelete);
-  echo '<script type="text/javascript">toastr.success("Delete Successfully")</script>';
-}
-if (isset($_POST['btn-update'])) {
-  $idUpdate = (int) $_GET['IdUpdate'];
-  $name = $_POST['nameProduct'];
-  $price = floatval($_POST['priceProduct']);
-  $discount = floatval($_POST['discountProduct']);
-  $description = $_POST['descriptionProduct'];
-  $view = (int) $_POST['viewProduct'];
-  $type = (int) $_POST['type'];
-  commodityUpdate($name, $price, $discount, $description, $view, $type, $idUpdate);
-  echo '<script type="text/javascript">toastr.success("Update Successfully")</script>';
-}
-require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vertical.php');
-?>
+<?php requiredTemplateAdmin('navigate_bar'); ?>
 <main class="main-content position-relative border-radius-lg ">
   <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl " id="navbarBlur"
        data-scroll="false">
@@ -79,151 +61,184 @@ require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/navbar-vert
             <div class="table-responsive p-0">
               <table class="table align-items-center mb-0">
                 <thead>
-                <tr>
-                  <th class="text-secondary opacity-7">STT</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Giá</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Hình Ảnh</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ngày Nhập</th>
-                  <th class="text-secondary opacity-7"></th>
-                </tr>
+                  <tr style="text-align: center;">
+                    <th class="text-secondary opacity-7">STT</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tên</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Giá</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Hình Ảnh</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Ngày Nhập</th>
+                    <th class="text-secondary opacity-7"></th>
+                  </tr>
                 </thead>
                 <tbody>
                 <?php
-                $result = commodityPagination('0,10');
+                $indexEnd = (int)$_GET['page'] * 10;
+                $indexStart = $indexEnd - 10;
+                $result = commodityPagination("$indexStart,10");
+                $index = 0;
                 if ($result) :
-                  $index = 0;
                   foreach ($result as $value) :
                     $index++;
-                    $name = $value['name'];
                     $createAt = $value['create_at'];
-                    $unit_price = number_format($value['unit_price'], 0);
-                    $db = $value['images'];
-                    $img = json_decode($db);
+                    $name = $value['name'];
+                    $unit_price = $value['unit_price'];
+                    $price = number_format($unit_price, 0, '', ',');
+                    $discount = $value['discount'];
+                    $priceNew = (int)$unit_price;
+                    $discountNew = (int)$discount === 0 ? 1 : $discount;
+                    $priceOff = number_format($priceNew / ((100 - $discountNew) / 100), 0);
+                    $img = json_decode($value['images']);
                     ?>
-                  <tr>
-                    <td class="align-middle" style="padding-left: 1.5rem;">
-                      <?= $index ?>
-                    </td>
-                    <td>
-                      <div class="d-flex px-2 py-1">
-                        <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm name-product"><?= $name ?></h6>
+                    <tr class="item-product-<?= $index ?>">
+                      <td class="align-middle id-product" style="padding-left: 1.5rem;">
+                        <?= $value['id_product'] ?>
+                      </td>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm name-product"><?= $name ?></h6>
+                          </div>
                         </div>
-                      </div>
-                    </td>
-                    <td>
-                      <p class="text-xs font-weight-bold mb-0"><?= $unit_price. ' đ' ?></p>
-                    </td>
-                    <td class="align-middle text-center text-sm">
-                      <div>
-                        <img src="<?= $img[0] ?>" class="avatar avatar-sm me-3" alt="user1">
-                      </div>
-                    </td>
-                    <td class="align-middle text-center">
-                      <span class="text-secondary text-xs font-weight-bold"><?= $createAt ?></span>
-                    </td>
-                    <td class="align-middle">
-                      <a href="./tables.php?IdUpdate=<?= $value['id'] ?>">
-                        <span class="badge badge-sm bg-gradient-primary">Edit</span>
-                      </a>
-                      <button type="button" style="border: none;" name="btn-delete" class="btn-delete badge badge-sm bg-gradient-danger" data-id="<?= $value['id_product'] ?>">
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                <?php
+                      </td>
+                      <td>
+                        <p class="text-xs font-weight-bold mb-0 price-product" data-discount="<?= $discount ?>"
+                           data-price="<?= $unit_price ?>"><?= $price . ' đ' ?></p>
+                        <del class="text-xs font-weight-bold mb-0"><?= $priceOff . ' đ' ?></del>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <div>
+                          <img src="<?= $img[0] ?>" class="avatar avatar-sm me-3" alt="user1">
+                        </div>
+                      </td>
+                      <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold"><?= $createAt ?></span>
+                      </td>
+                      <td style="display: none;">
+                        <input class="description" type="hidden" value="<?= $value['description'] ?>"/>
+                        <input class="id_type" type="hidden" value="<?= $value['id_type'] ?>"/>
+                        <input class="view" type="hidden" value="<?= $value['view'] ?>"/>
+                      </td>
+                      <td class="align-middle">
+                        <button type="button" style="border: none;" name="btn-edit"
+                                class="btn-edit badge badge-sm bg-gradient-primary"
+                                data-id="<?= $value['id_product'] ?>">
+                          Edit
+                        </button>
+                        <button type="button" style="border: none;" name="btn-delete"
+                                class="btn-delete badge badge-sm bg-gradient-danger"
+                                data-id="<?= $value['id_product'] ?>">
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  <?php
                   endforeach;
                 endif;
                 ?>
                 </tbody>
               </table>
+              <div style="display: flex; justify-content: center;">
+                <nav aria-label="Page navigation example">
+                  <ul class="pagination">
+                    <?php
+                    $quantity = productTotalItem();
+                    $length = $quantity / 10;
+                    if ($length > (int)$length) $length++;
+                    for ($i = 1; $i <= $length; $i++) :
+                      ?>
+                      <li class="page-item">
+                        <a class="page-link <?php if ($i === (int) $_GET['page']) echo 'active-index-page'; ?>" href="/admin/products?page=<?= $i ?>">
+                          <?= $i ?>
+                        </a>
+                      </li>
+                    <?php
+                    endfor;
+                    ?>
+                  </ul>
+                </nav>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <?php
-    $idUpdate = $_GET['IdUpdate'];
-    if ($idUpdate) :
-      $result = commoditySelectAll("id = $idUpdate");
-      if ($result) :
-        foreach ($result as $value) :
-          ?>
-          <div class="row">
-            <div class="col-md-8">
-              <div class="card">
-                <div class="card-header pb-0">
-                  <div class="d-flex align-items-center">
-                    <p class="mb-0">Edit Product</p>
-                  </div>
-                </div>
-                <form method="post">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="example-text-input" class="form-control-label">Tên</label>
-                          <input name="nameProduct" class="form-control" type="text" value="<?= $value['name'] ?>" placeholder="">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="example-text-input" class="form-control-label">Giá</label>
-                          <input name="priceProduct" class="form-control" type="number" value="<?= $value['unit_price'] ?>" placeholder="">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="example-text-input" class="form-control-label">Giảm giá</label>
-                          <input name="discountProduct" class="form-control" type="text" value="<?= $value['discount'] ?>" placeholder="">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="example-text-input" class="form-control-label">Mô tả</label>
-                          <input name="descriptionProduct" class="form-control" type="text" value="<?= $value['description'] ?>" placeholder="">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="example-text-input" class="form-control-label">Lượt xem</label>
-                          <input name="viewProduct" class="form-control" type="text" value="<?= $value['view'] ?>" placeholder="">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="type" class="form-control-label">Loại</label>
-                          <select name="type" id="type" style="border: 1px solid #d2d6da;font-size: 0.875rem;font-weight: 400;line-height: 1.4rem;color: #495057;">
-                            <option value="0">Chọn Loại</option>
-                            <option <?php if($value['id_type'] == 1) { echo 'selected'; } ?> value="1">Samsung</option>
-                            <option <?php if($value['id_type'] == 2) { echo 'selected'; } ?> value="2">Iphone</option>
-                            <option <?php if($value['id_type'] == 3) { echo 'selected'; } ?> value="3">Redmi</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-header pb-0">
-                    <div class="d-flex align-items-center">
-                      <button name="btn-update" class="btn btn-primary btn-sm ms-auto">Submit</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <?php
-        endforeach;
-      endif;
-    endif;
-    require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/footer.php');
-    ?>
+    <?php requiredTemplateAdmin('footer'); ?>
   </div>
 </main>
-<?php
-require($_SERVER['DOCUMENT_ROOT'] . '/pages/templates/includes/admin/script.php');
-?>
+<section class="model-container-edit none-model">
+  <div class="model-wrapper-edit container-fluid py-4">
+    <div class="row">
+      <div style="z-index: 2;" class="col-md-8">
+        <div class="card">
+          <div class="card-header pb-0">
+            <div class="d-flex align-items-center">
+              <p class="mb-0">Edit Product</p>
+            </div>
+          </div>
+          <form>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Tên</label>
+                    <input id="name-edit" name="nameProduct" class="form-control" type="text" value="" placeholder=""
+                           data-id="">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Giá</label>
+                    <input id="price-edit" name="priceProduct" class="form-control" type="number" value=""
+                           placeholder="">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Giảm giá</label>
+                    <input id="discount-edit" name="discountProduct" class="form-control" type="text" value=""
+                           placeholder="">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Mô tả</label>
+                    <input id="description-edit" name="descriptionProduct" class="form-control" type="text" value=""
+                           placeholder="">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="example-text-input" class="form-control-label">Lượt xem</label>
+                    <input id="view-edit" name="viewProduct" class="form-control" type="text" value="" placeholder="">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="type-edit" class="form-control-label">Loại</label>
+                    <select name="type" id="type-edit"
+                            style="border: 1px solid #d2d6da;font-size: 0.875rem;font-weight: 400;line-height: 1.4rem;color: #495057;">
+                      <option value="0">Chọn Loại</option>
+                      <option value="2">Áo</option>
+                      <option value="3">Quần</option>
+                      <option value="4">Áo Khoác</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-header pb-0">
+              <div class="d-flex align-items-center">
+                <button id="btn-submit" type="button" name="btn-update" class="btn btn-primary btn-sm ms-auto">Submit
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <span class="model-close-edit none-model"></span>
+    </div>
+</section>
+<?php requiredTemplateAdmin('script'); ?>
 <script src="../../resources/js/product-admin.js"></script>
 </body>
 </html>
