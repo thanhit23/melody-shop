@@ -8,7 +8,6 @@ if (isset($_POST['logout'])) {
 }
 require_once($_SERVER['DOCUMENT_ROOT'] . '/PDO/cart.php');
 ?>
-<script src="../../../resources/js/header.js"></script>
 <header class="pb-md-4 pb-0" style="background-color: #f8f8f8;">
   <div class="top-nav top-header sticky-header">
     <div class="container-fluid-lg">
@@ -224,3 +223,4 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/PDO/cart.php');
     </div>
   </div>
 </header>
+<script src="../../../resources/js/header.js"></script>

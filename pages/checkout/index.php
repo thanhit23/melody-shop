@@ -1,6 +1,7 @@
 <?php
 session_start();
 require($_SERVER['DOCUMENT_ROOT'] . '/PDO/user.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/PDO/cart.php');
 $id_user = $_SESSION['idUser'];
 ?>
 <!doctype html>
@@ -357,49 +358,24 @@ $id_user = $_SESSION['idUser'];
                             <div class="summery-header">
                                 <h3>Order Summery</h3>
                             </div>
-
                             <ul class="summery-contain">
-                                <li>
-                                    <img src="https://themes.pixelstrap.com/fastkart/assets/images/vegetable/product/1.png"
-                                        class="img-fluid blur-up lazyloaded checkout-image" alt="">
-                                    <h4>Bell pepper <span>X 1</span></h4>
-                                    <h4 class="price">$32.34</h4>
-                                </li>
-
-                                <li>
-                                    <img src="https://themes.pixelstrap.com/fastkart/assets/images/vegetable/product/2.png"
-                                        class="img-fluid blur-up lazyloaded checkout-image" alt="">
-                                    <h4>Eggplant <span>X 3</span></h4>
-                                    <h4 class="price">$12.23</h4>
-                                </li>
-
-                                <li>
-                                    <img src="https://themes.pixelstrap.com/fastkart/assets/images/vegetable/product/3.png"
-                                        class="img-fluid blur-up lazyloaded checkout-image" alt="">
-                                    <h4>Onion <span>X 2</span></h4>
-                                    <h4 class="price">$18.27</h4>
-                                </li>
-
-                                <li>
-                                    <img src="https://themes.pixelstrap.com/fastkart/assets/images/vegetable/product/4.png"
-                                        class="img-fluid blur-up lazyloaded checkout-image" alt="">
-                                    <h4>Potato <span>X 1</span></h4>
-                                    <h4 class="price">$26.90</h4>
-                                </li>
-
-                                <li>
-                                    <img src="https://themes.pixelstrap.com/fastkart/assets/images/vegetable/product/5.png"
-                                        class="img-fluid blur-up lazyloaded checkout-image" alt="">
-                                    <h4>Baby Chili <span>X 1</span></h4>
-                                    <h4 class="price">$19.28</h4>
-                                </li>
-
-                                <li>
-                                    <img src="https://themes.pixelstrap.com/fastkart/assets/images/vegetable/product/6.png"
-                                        class="img-fluid blur-up lazyloaded checkout-image" alt="">
-                                    <h4>Broccoli <span>X 2</span></h4>
-                                    <h4 class="price">$29.69</h4>
-                                </li>
+                                <?php
+                                    $result = selectItemByQuickPayment();
+                                    if ($result) :
+                                        foreach ($result as $value) :
+                                            $img = json_decode($value['images']);
+                                            $price = number_format($value['unit_price'], 0, '', ',');
+                                        ?>
+                                        <li>
+                                            <img src="<?= $img[0] ?>"
+                                                class="img-fluid blur-up lazyloaded checkout-image" alt="">
+                                            <h4><?= $value['name'] ?><span> X <?= $value['quantity'] ?></span></h4>
+                                            <h4 class="price"><?= $price ?></h4>
+                                        </li>
+                                        <?php
+                                        endforeach;
+                                    endif;
+                                ?>
                             </ul>
 
                             <ul class="summery-total">
