@@ -6,6 +6,16 @@ require_once ('pdo.php');
  * @return array
  */
 
+function selectItemByQuickPayment() {
+  $sql = "SELECT * FROM `cart` INNER JOIN `products` ON `cart`.`id_product` = `products`.`id_product` WHERE `cart`.`quick_payment` = 1";
+  return query($sql);
+}
+
+/**
+ * @param int $id
+ * @return array
+ */
+
 function selectItemByIdUser($id) {
   $sql = "SELECT * FROM `cart` INNER JOIN `products` ON `cart`.`id_product` = `products`.`id_product` WHERE `cart`.`id_user` = $id";
   return query($sql);

@@ -1,6 +1,6 @@
 const quantityElement = document.getElementsByClassName('quantity');
-const btnPlus = document.getElementsByClassName('btn-plus');
-const btnMinus = document.getElementsByClassName('btn-minus');
+// const btnPlus = document.getElementsByClassName('btn-plus');
+// const btnMinus = document.getElementsByClassName('btn-minus');
 const selectProductElement = document.getElementsByClassName('select-product-item');
 const btnCouponDiscount = document.querySelector('.btn-apply-coupon');
 const priceDiscountElement = document.getElementById('price-discount');
@@ -43,53 +43,53 @@ for (let i = 0; i < itemLenght; i++) {
   
 }
 
-for (let i = 0; i < itemLenght; i++) {
-  btnMinus[i].addEventListener('click', () => {
-    const parent = btnMinus[i].parentElement.parentElement.parentElement.parentElement;
+// for (let i = 0; i < itemLenght; i++) {
+//   btnMinus[i].addEventListener('click', () => {
+//     const parent = btnMinus[i].parentElement.parentElement.parentElement.parentElement;
     
-    const subTotal = parent.nextElementSibling.querySelector('.sub__total');
+//     const subTotal = parent.nextElementSibling.querySelector('.sub__total');
     
-    const priceElement = parent.previousElementSibling.querySelector('.price_new');
+//     const priceElement = parent.previousElementSibling.querySelector('.price_new');
 
-    const price = +priceElement.dataset.value
+//     const price = +priceElement.dataset.value
     
-    const quantityElement = btnMinus[i].nextElementSibling;
+//     const quantityElement = btnMinus[i].nextElementSibling;
 
-    const quantityValue = Number(quantityElement.value);
+//     const quantityValue = Number(quantityElement.value);
 
-    if (quantityValue > 1) {
-      const total = price * Number(quantityValue - 1);
+//     if (quantityValue > 1) {
+//       const total = price * Number(quantityValue - 1);
       
-      btnMinus[i].nextElementSibling.value = quantityValue - 1;
+//       btnMinus[i].nextElementSibling.value = quantityValue - 1;
       
-      subTotal.innerHTML = formatMoney(total);
-    }
-  })
+//       subTotal.innerHTML = formatMoney(total);
+//     }
+//   })
   
-}
+// }
 
-for (let i = 0; i < itemLenght; i++) {
-  btnPlus[i].addEventListener('click', () => {
-    const parent = btnPlus[i].parentElement.parentElement.parentElement.parentElement;
+// for (let i = 0; i < itemLenght; i++) {
+//   btnPlus[i].addEventListener('click', () => {
+//     const parent = btnPlus[i].parentElement.parentElement.parentElement.parentElement;
 
-    const subTotal = parent.nextElementSibling.querySelector('.sub__total');
+//     const subTotal = parent.nextElementSibling.querySelector('.sub__total');
     
-    const priceElement = parent.previousElementSibling.querySelector('.price_new');
+//     const priceElement = parent.previousElementSibling.querySelector('.price_new');
 
-    const price = +priceElement.dataset.value;
+//     const price = +priceElement.dataset.value;
     
-    const quantityElement = btnPlus[i].previousElementSibling;
+//     const quantityElement = btnPlus[i].previousElementSibling;
 
-    const quantityValue = Number(quantityElement.value);
+//     const quantityValue = Number(quantityElement.value);
   
-    if (quantityValue < 10) {
-      const total = price * Number(quantityValue);
+//     if (quantityValue < 10) {
+//       const total = price * Number(quantityValue);
 
-      subTotal.innerHTML = formatMoney(total);
-    }
-  })
+//       subTotal.innerHTML = formatMoney(total);
+//     }
+//   })
   
-}
+// }
 
 for (let i = 0; i < itemLenght; i++) {
   selectProductElement[i].addEventListener('change', ({ target: { checked } }) => {
@@ -136,15 +136,16 @@ processCheckoutElement.addEventListener('click', () => {
 
   for (let i = 0; i < itemLenght; i++) {
     if (selectProductElement[i].checked === true) {
-      arrProductCheckout.push(selectProductElement[i].dataset.id);
+      arrProductCheckout.push(Number(selectProductElement[i].dataset.id));
     }
   }
 
-  formData.append('id_product', arrProductCheckout);
+  formData.append('id_product', JSON.stringify(arrProductCheckout));
 
   fetch(route.select_product_checkout, {method: 'POST', body: formData})
     .then(data => data.json())
     .then(({ status }) => {
+      console.log(status);
       if (status) {
         setInterval(() => window.location = 'http://localhost/checkout', 3000);
       }

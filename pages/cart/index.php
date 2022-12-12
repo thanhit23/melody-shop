@@ -125,16 +125,16 @@ $id_user = $_SESSION['idUser'];
                                                     <div class="quantity-price">
                                                         <div class="cart_qty">
                                                             <div class="input-group">
-                                                                <button type="button" class="btn btn-minus qty-left-minus"
+                                                                <!-- <button type="button" class="btn btn-minus qty-left-minus"
                                                                     data-type="minus" data-field="">
                                                                     <i class="fa fa-minus ms-0" aria-hidden="true"></i>
-                                                                </button>
+                                                                </button> -->
                                                                 <input class="quantity form-control input-number" type="number"
-                                                                    name="quantity" value="<?= $value['quantity'] ?>">
-                                                                <button type="button" class="btn btn-plus qty-right-plus"
+                                                                    name="quantity" value="<?= $value['quantity'] ?>" style="text-align: start;">
+                                                                <!-- <button type="button" class="btn btn-plus qty-right-plus"
                                                                     data-type="plus" data-field="">
                                                                     <i class="fa fa-plus ms-0" aria-hidden="true"></i>
-                                                                </button>
+                                                                </button> -->
                                                             </div>
                                                         </div>
                                                     </div>
