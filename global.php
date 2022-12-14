@@ -1,5 +1,4 @@
 <?php
-session_start();
 /* Định nghĩa đường dẫn chứa ảnh sử dụng trong upload */
 $IMAGE_DIR = $_SERVER["DOCUMENT_ROOT"] . "$ROOT_URL/content/images";
 /*

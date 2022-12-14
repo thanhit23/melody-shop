@@ -34,11 +34,12 @@ function getListItemProductByIdUser($id) {
 
 
 /**
+ * @param int $id_user
  * @return array
  */
 
-function countItemCart() {
-  $sql = "SELECT COUNT(id_cart) AS quantity FROM `cart`";
+function countItemCart($id_user) {
+  $sql = "SELECT COUNT(id_cart) AS quantity FROM `cart` where `id_user` = $id_user";
   return query($sql);
 }
 

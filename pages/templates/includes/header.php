@@ -59,7 +59,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/PDO/cart.php');
                     if ($_SESSION['fullName']) :?>
                     <button type="button" class="btn p-0 position-relative header-wishlist">
                       <i data-feather="shopping-cart"></i>
-                      <?php $result = countItemCart();
+                      <?php $result = countItemCart((int) $_SESSION['idUser']);
                       if ($result) :
                         foreach ($result as $value) :
                       ?>

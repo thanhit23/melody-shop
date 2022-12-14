@@ -431,7 +431,7 @@ if ($result) :
                               foreach ($result as $values) {
                                 $content = $values['content'];
                                 $createAt = $values['create_at'];
-                                $fullName = $values['full_name'];
+                                $fullName = $values['username'];
                                 ?>
                                 <li>
                                   <div class="people-box">
